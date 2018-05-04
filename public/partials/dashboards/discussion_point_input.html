@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<div class="table-responsive">
+   <table class="table ">
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px">Technology Service Fulfillment Metrics</th>
+            <th style="text-align:center; ">  <span><a href="/discussion_point_input/{{previous_discussion_point_id}}">Previous</a> </span>&nbsp;</th>
+            <th style="text-align:center; ">  <span><a href="/metrics/ ">Return to Metrics Admin</a> </span>&nbsp;</th>
+            <th style="text-align:center; ">  <span><a href="/discussion_point_input/{{next_discussion_point_id}} ">Next</a> </span>&nbsp;</th>
+            <th style="text-align:center; ">  <a href="#" ng-click="$back()">Back </a></th>
+      </thead>
+   </table>
+</div>
+<form id="discussionPointForm" method="post">
+<input type="hidden" class="form-control" name="discussion_point_id"   ng-model="discussion_point.discussion_point_id" />  
+<div class="pull-right"><span ng-if="success" style="color:green; font-weight:bold">{{success}}</span><span ng-if="error" style="color:red; font-weight:bold">{{error}}</span>&nbsp;<button type="submit" class="btn btn-default" ng-click="submit(discussion_point)">Submit</button></div>
+ <br />
+       <div class="form-group">
+               <div class="form-group">
+                   <label class="control-label">Detail&nbsp;</label>
+                   <textarea class="form-control" name="detail" rows="10"  maxlength="8000" ng-model="discussion_point.detail" ></textarea>
+               </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+      <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Year</label>
+              <select ng-model="discussion_point.year" ng-options="year.id as year.name for year in years ">
+                  <option value="" selected disabled>Select Year</option>
+              </select>
+            </div>
+            <div class="col-xs-2">
+                <label class="control-label">Month</label>
+              <select ng-model="discussion_point.month" ng-options="month.id as month.name for month in months ">
+                  <option value="" selected disabled>Select Month</option>
+              </select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="row">
+            <div class="col-xs-5">
+                <label class="control-label">Metric</label>
+              <select ng-model="discussion_point.metric_id" ng-options="item.metric_id as item.name for item in metrics_dds">
+                  <option value="" selected disabled>Select Metric</option>
+              </select>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Updated On</label>
+                <input type="date" class="form-control" name="updated" readonly="readonly" ng-model="discussion_point.updated" />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Updated</label>
+                <input type="text" class="form-control" name="updated_by"  maxlength="100" ng-model="discussion_point.updated_by" />
+            </div>
+
+        </div>
+
+    </div>
+    
+  <div class="pull-right"><span ng-if="success" style="color:green; font-weight:bold">{{success}}</span><span ng-if="error" style="color:red; font-weight:bold">{{error}}</span>&nbsp;<button type="submit" class="btn btn-default" ng-click="submit(discussion_point)">Submit</button></div>
+ 
+</form>
+
+
+

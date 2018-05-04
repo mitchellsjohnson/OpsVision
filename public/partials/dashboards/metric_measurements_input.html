@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<div class="table-responsive">
+   <table class="table ">
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px">Technology Service Fulfillment Metrics</th>
+            <th class="inputsubheader">  <a href="/metric_edit/{{metric_id}} ">Edit Metric</a></th>
+            <th class="inputsubheaderselected">  <a href="/metric_measurements/{{metric_id}}/{{year}}">Add Metric Measurements - {{year}}</a> </th>
+            <th class="inputsubheader">  <a href="/metric_meta_data/{{metric_measurements.metric_id}}">Edit Initiative Meta Data</a> </th>
+            <th class="inputsubheader">  <a href="/metrics/ ">Metrics Admin</a></th>
+            <th class="inputsubheader">  <a href="/metric_measurements/{{previous_metric_id}}/{{year}}">Previous</a></th>
+            <th class="inputsubheader">  <a href="/metric_measurements/{{next_metric_id}}/{{year}}">Next</a> </th>
+            <th class="inputsubheader">  <a href="#" ng-click="$back()">Back </a></th>
+      </thead>
+   </table>
+</div>
+
+<div class="table-responsive">
+   <table class="table ">
+         <tr> <a href="/metric_measurements/{{metric_id}}/{{prevYear}}">Add Metric Measurements - Year {{prevYear}}</a></tr>
+         <br />
+         <tr> <a href="/metric_measurements/{{metric_id}}/{{nextYear}}">Add Metric Measurements - Year {{nextYear}}</a></tr>
+
+   </table>
+</div>
+
+
+<form id="metricForm" method="post">
+<input type="hidden" class="form-control" name="year"   ng-model="metric_measurements.year" />  
+<div class="pull-right"><span ng-if="success" style="color:green; font-weight:bold">{{success}}</span><span ng-if="error" style="color:red; font-weight:bold">{{error}}</span>&nbsp;<button type="submit" class="btn btn-default" ng-click="submit(metric_measurements)">Submit</button></div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Metric ID</label>
+                <input type="text" class="form-control" name="metric_id" readonly="readonly" ng-model="metric_measurements.metric_id" required />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Metric Code</label>
+                <input type="text" class="form-control" name="metric_cd"  readonly="readonly" ng-model="metric_measurements.metric_cd" required />
+            </div>
+
+            <div class="col-xs-4">
+                <label class="control-label">Label</label>
+                <input type="text" class="form-control" name="label"   readonly="readonly" ng-model="metric_measurements.label" required/>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <div >
+            <label class="control-label">Metric Values</label>
+        </div>
+        <div class="row">
+             <div class="col-xs-1">
+                    <input type="hidden" class="form-control" name="ytd_id"   ng-model="metric_measurements.ytd_id" />  
+                    <label class="control-label">Ytd</label>
+                    <input type="text" class="form-control" name="ytd_value"   ng-model="metric_measurements.ytd_value" />
+            </div>
+       </div>
+        <div class="row">
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="jan_mtd_id"   ng-model="metric_measurements.jan_mtd_id" />  
+                <label class="control-label">Jan {{year}}</label>
+                <input type="text" class="form-control" name="jan_mtd_value"   ng-model="metric_measurements.jan_mtd_value" />
+                <div ng-hide="metric_measurements.jan_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.jan_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.jan_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="feb_mtd_id"   ng-model="metric_measurements.feb_mtd_id" />  
+                <label class="control-label">Feb {{year}}</label>
+                <input type="text" class="form-control" name="feb_mtd_value"   ng-model="metric_measurements.feb_mtd_value" />
+                <div ng-hide="metric_measurements.feb_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.feb_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.feb_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="mar_mtd_id"   ng-model="metric_measurements.mar_mtd_id" />  
+                <label class="control-label">Mar {{year}}</label>
+                <input type="text" class="form-control" name="mar_mtd_value"   ng-model="metric_measurements.mar_mtd_value" />
+                <div ng-hide="metric_measurements.mar_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.mar_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.mar_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="apr_mtd_id"   ng-model="metric_measurements.apr_mtd_id" />  
+                <label class="control-label">Apr {{year}}</label>
+                <input type="text" class="form-control" name="apr_mtd_value"   ng-model="metric_measurements.apr_mtd_value" />
+                <div ng-hide="metric_measurements.apr_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.apr_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.apr_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="may_mtd_id"   ng-model="metric_measurements.may_mtd_id" />  
+                <label class="control-label">May {{year}}</label>
+                <input type="text" class="form-control" name="may_mtd_value"   ng-model="metric_measurements.may_mtd_value" />
+                <div ng-hide="metric_measurements.may_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.may_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.may_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="jun_mtd_id"   ng-model="metric_measurements.jun_mtd_id" />  
+                <label class="control-label">Jun {{year}}</label>
+                <input type="text" class="form-control" name="jun_mtd_value"   ng-model="metric_measurements.jun_mtd_value" />
+                <div ng-hide="metric_measurements.jun_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.jun_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.jun_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="jul_mtd_id"   ng-model="metric_measurements.jul_mtd_id" />  
+                <label class="control-label">Jul {{year}}</label>
+                <input type="text" class="form-control" name="jul_mtd_value"   ng-model="metric_measurements.jul_mtd_value" />
+                <div ng-hide="metric_measurements.jul_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.jul_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.jul_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="aug_mtd_id"   ng-model="metric_measurements.aug_mtd_id" />  
+                <label class="control-label">Aug {{year}}</label>
+                <input type="text" class="form-control" name="aug_mtd_value"   ng-model="metric_measurements.aug_mtd_value" />
+                <div ng-hide="metric_measurements.aug_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.aug_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.aug_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="sep_mtd_id"   ng-model="metric_measurements.sep_mtd_id" />  
+                <label class="control-label">Sep {{year}}</label>
+                <input type="text" class="form-control" name="sep_mtd_value"   ng-model="metric_measurements.sep_mtd_value" />
+                <div ng-hide="metric_measurements.sep_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.sep_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.sep_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="oct_mtd_id"   ng-model="metric_measurements.oct_mtd_id" />  
+                <label class="control-label">Oct {{year}}</label>
+                <input type="text" class="form-control" name="oct_mtd_value"   ng-model="metric_measurements.oct_mtd_value" />
+                <div ng-hide="metric_measurements.oct_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.oct_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.oct_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="nov_mtd_id"   ng-model="metric_measurements.nov_mtd_id" />  
+                <label class="control-label">Nov {{year}}</label>
+                <input type="text" class="form-control" name="nov_mtd_value"   ng-model="metric_measurements.nov_mtd_value" />
+                <div ng-hide="metric_measurements.nov_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.nov_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.nov_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="dec_mtd_id"   ng-model="metric_measurements.dec_mtd_id" />  
+                <label class="control-label">Dec {{year}}</label>
+                <input type="text" class="form-control" name="dec_mtd_value"   ng-model="metric_measurements.dec_mtd_value" />
+                <div ng-hide="metric_measurements.dec_mtd_discussion_point_id"><a href="/discussion_point_input/">Add Discussion Point </a></div>
+                <div ng-hide="!metric_measurements.dec_mtd_discussion_point_id"><a href="/discussion_point_input/{{metric_measurements.dec_mtd_discussion_point_id}}">Edit Discussion Point </a></div>
+            </div>
+
+        </div>
+        <br />
+    <div class="form-group">
+           <div >
+            <label class="control-label">Metric Measurements</label>
+        </div>
+        <div class="row">
+             <div class="col-xs-1">
+                    <input type="hidden" class="form-control" name="ytd_id"   ng-model="metric_measurements.ytd_id" />  
+                    <label class="control-label">Ytd</label>
+                    <input type="text" class="form-control" name="ytd_measurement"   ng-model="metric_measurements.ytd_measurement" />
+            </div>
+       </div>
+        <div class="row">
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="jan_mtd_id"   ng-model="metric_measurements.jan_mtd_id" />  
+                <label class="control-label">Jan {{year}}</label>
+                <input type="text" class="form-control" name="jan_mtd_measurement"   ng-model="metric_measurements.jan_mtd_measurement" />
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="feb_mtd_id"   ng-model="metric_measurements.feb_mtd_id" />  
+                <label class="control-label">Feb {{year}}</label>
+                <input type="text" class="form-control" name="feb_mtd_measurement"   ng-model="metric_measurements.feb_mtd_measurement" />
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="mar_mtd_id"   ng-model="metric_measurements.mar_mtd_id" />  
+                <label class="control-label">Mar {{year}}</label>
+                <input type="text" class="form-control" name="mar_mtd_measurement"   ng-model="metric_measurements.mar_mtd_measurement" />
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="apr_mtd_id"   ng-model="metric_measurements.apr_mtd_id" />  
+                <label class="control-label">Apr {{year}}</label>
+                <input type="text" class="form-control" name="apr_mtd_measurement"   ng-model="metric_measurements.apr_mtd_measurement" />
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="may_mtd_id"   ng-model="metric_measurements.may_mtd_id" />  
+                <label class="control-label">May {{year}}</label>
+                <input type="text" class="form-control" name="may_mtd_measurement"   ng-model="metric_measurements.may_mtd_measurement" />
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="jun_mtd_id"   ng-model="metric_measurements.jun_mtd_id" />  
+                <label class="control-label">Jun {{year}}</label>
+                <input type="text" class="form-control" name="jun_mtd_measurement"   ng-model="metric_measurements.jun_mtd_measurement" />
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="jul_mtd_id"   ng-model="metric_measurements.jul_mtd_id" />  
+                <label class="control-label">Jul {{year}}</label>
+                <input type="text" class="form-control" name="jul_mtd_measurement"   ng-model="metric_measurements.jul_mtd_measurement" />
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="aug_mtd_id"   ng-model="metric_measurements.aug_mtd_id" />  
+                <label class="control-label">Aug {{year}}</label>
+                <input type="text" class="form-control" name="aug_mtd_measurement"   ng-model="metric_measurements.aug_mtd_measurement" />
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="sep_mtd_id"   ng-model="metric_measurements.sep_mtd_id" />  
+                <label class="control-label">Sep {{year}}</label>
+                <input type="text" class="form-control" name="sep_mtd_measurement"   ng-model="metric_measurements.sep_mtd_measurement" />
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="oct_mtd_id"   ng-model="metric_measurements.oct_mtd_id" />  
+                <label class="control-label">Oct {{year}}</label>
+                <input type="text" class="form-control" name="oct_mtd_measurement"   ng-model="metric_measurements.oct_mtd_measurement" />
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="nov_mtd_id"   ng-model="metric_measurements.nov_mtd_id" />  
+                <label class="control-label">Nov {{year}}</label>
+                <input type="text" class="form-control" name="nov_mtd_measurement"   ng-model="metric_measurements.nov_mtd_measurement" />
+            </div>
+            <div class="col-xs-1">
+                <input type="hidden" class="form-control" name="dec_mtd_id"   ng-model="metric_measurements.dec_mtd_id" />  
+                <label class="control-label">Dec {{year}}</label>
+                <input type="text" class="form-control" name="dec_mtd_measurement"   ng-model="metric_measurements.dec_mtd_measurement" />
+            </div>
+
+        </div>
+    </div>
+</div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Updated On</label>
+                <input type="date" class="form-control" name="metric_id" readonly="readonly" ng-model="metric_measurements.updated" />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Updated</label>
+                <input type="text" class="form-control" name="metric_cd"  maxlength="100" ng-model="metric_measurements.updated_by" />
+            </div>
+
+        </div>
+    <span ng-if="error" style="color:red; font-weight:bold">{{error}}</span>
+    </div>
+    
+<div class="pull-right"><span ng-if="success" style="color:green; font-weight:bold">{{success}}</span><span ng-if="error" style="color:red; font-weight:bold">{{error}}</span>&nbsp;<button type="submit" class="btn btn-default" ng-click="submit(metric_measurements)">Submit</button></div>
+</form>
+
+
+

@@ -1,0 +1,127 @@
+﻿<div class="table-responsive">
+   <table class="table ">
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th class="responsive_largetvtxt">{{viewModel.dashboardDescription}}</th>
+            <th style="text-align:center; ">  <span ng-if="viewModel.metricId"><a href="#" ng-click="$back()">Back </a> </span>&nbsp;</th>
+              
+      </thead>
+   </table>
+</div>
+<!-- /.table-responsive -->
+<div class="table-responsive">
+   <table class="table table-bordered" id="metricsTable">
+      <colgroup>
+         <col style="width:2%"  >
+         <col style="width:25%" >
+         <col style="width:4.5%" ng-repeat="columnHeader in viewModel.columnHeaders">
+         <col style="width:auto"  >
+      </colgroup>
+      <thead>
+         <tr >
+            <th style="background-color:lightblue; text-align:center">#</th>
+            <th style="background-color:lightblue"  >Metric</th>
+            <th  class="responsive_tinytxt" style="background-color:lightgray; text-align:center" ng-repeat="columnHeader in viewModel.columnHeaders">{{columnHeader.value}}</th>
+            <th style="background-color:lightyellow; text-align:center">Note</th>
+         </tr>
+      </thead>
+      <tbody ng-repeat="metric in viewModel.metrics">
+         <tr >
+            <td>{{$index + 1}}</th>
+            <td style="text-align:left; ">
+                <span class="responsive-metric_desc-small"><a href="/initiative_dashboard/{{ metric.dashboardId }}/{{ metric.startYear }}/{{ metric.startMonth }}/{{ metric.totalMonths }}/{{ metric.metricId }}" ng-show="metric.HasChildDash ==='TRUE'"" >{{ metric.label }} </a></span>
+                <div ng-show="metric.HasChildDash ==='FALSE'"" class="responsive-metric_desc-small">{{ metric.label }}</div>  
+
+               <div class="relative" >
+                  <a href='/initiative_details/{{ metric.metricId}}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-info-circle"></i></div>
+                  </a>
+               </div>          
+                <div class="relative">
+                  <a href='/initiative_update_request/{{ metric.metricId}}'>
+                     <div class="relative-icon-bottom-right-oneleft"><i class="fa fa-pencil"></i></div>
+                  </a>
+               </div>
+                <div class="relative" ng-show="isAdmin === 'TRUE'">
+                  <a href='/metric_edit/{{ metric.metricId}}'>
+                     <div class="relative-icon-bottom-right-twoleft"><i class="fa fa-pencil-square-o"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td  ng-repeat="cell in metric.cells" ng-style="{'border-top': cell.borderTop, 'border-bottom': cell.borderBottom,'border-left': cell.borderLeft, 'border-right': cell.borderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[cell.measure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!cell.planStart"><span class="smalltxt">{{ cell.planStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!cell.actualStart"><span class="smalltxt">{{ cell.actualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!cell.planLaunch"><span class="smalltxt">{{ cell.planLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!cell.targetLaunch"><span class="boldsmalltxtwhitebg">{{ cell.targetLaunch }}&nbsp;<br /></span></div> 
+                  <div class="divborder" ng-hide="!cell.actualFinish"><span class="boldsmalltxtyellowbg">{{ cell.actualFinish }}&nbsp;<br /></span></div>
+               </a>
+                
+              <span class="responsive_tinytxt" ng-show="viewModel.showPercentComplete === 'TRUE'"> {{ cell.val | decorateNumberVal: cell.displaytype }}</span>
+              <span class="responsive_tinytxt" ng-show="viewModel.showPercentComplete === 'FALSE' &&  cell.measure != 'GRAY'"> {{ cell.measure }}</span>
+             
+
+               <div ng-hide="!cell.discussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metricId}}/{{ metric.dashboardId }}/{{ cell.month}}/{{ cell.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!cell.externalDashboard" class="relative">
+                  <a href='{{ cell.externalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="fa fa-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td style="text-align:left;"> {{metric.shortNote}}</td>
+         </tr>
+   </table>
+</div>
+<div class="table-responsive">
+   <table>
+      <tr>
+         <td style="font-weight:bold">eVestment Proprietary and Confidential </td>
+      </tr>
+      <tr>
+         <td><sup>1</sup>&nbsp;<b>Strategic Priorities:</b>  Priorities and planning schedules were established at the start of 2015.  Initiative details available by clicking Info Icon <i class="fa fa-info-circle"></i>. </td>
+      </tr>
+      <tr>
+         <td><sup>2</sup>&nbsp;<b>Methodology:</b>  <span style="background-color:lightgreen;">Green Initiatives</span> are on schedule.  <span style="background-color:yellow;">Yellow initiatives</span> are at risk but progress is being made.  <span style="background-color:red;">Red initiatives</span> will not be delivered by Target Launch.</td>
+      </tr>
+      <tr>
+         <td><sup>3</sup>&nbsp;<b>Discussion Items:</b>  Commentary and Schedule Analysis available by clicking Comment Icon <i class="fa fa-comment-o"></i>.</td>
+      </tr>
+      <tr>
+         <td><sup>4</sup>&nbsp;<b>Schedule Date Definitions:</b>  Definition of Plan Start, Actual Start, Plan Launch, Actual Launch, and Target Launch. Definitions available <a href="#" data-toggle="modal" data-target="#basicModal">HERE </a> or by clicking on any Schedule Date in monthly cell. </td>
+      </tr>
+       <tr>
+           <td><sup>5</sup>&nbsp;<b>Review All Status Update Requests for Current Month. <a href="/initiative_update_request_list/{{viewModel.dashboard_id}}/{{viewModel.current_month}}/{{viewModel.year}}">Click Here...</a> </td>
+       </tr>
+       
+   </table>
+</div>
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h4 class="modal-title" id="myModalLabel">Milestone Definition</h4>
+         </div>
+         <div class="modal-body">
+            <ul>
+               <li><b>Plan Start:</b>  Initiative Start date set by Priority Committee during 2015 strategic planning.  </li>
+               <li><b>Plan Launch:</b>  Estimated Launch date (relative to Planned Start) set by Engineering team during 2015 strategic planning.  Estimates are created from high-level requirements and do not represent firm delivery commitments.  Target Launch dates are refined continuously as detailed requirements are finalized.</li>
+               <li><b>Actual Start:</b>  Actual Start date of initiative.</li>
+               <li><b>Actual Launch:</b>  Actual Launch date of initiative.</li>
+               <li><span style="background-color:yellow"><b><i>Target Launch:</i> </b> Represents current estimate of expected launch date for initiative that is in active development.  This is the most accurate planning date because it is created from the latest requirements and priority.  Projects that have not begun do not have a target launch.</span></li>
+            </ul>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>

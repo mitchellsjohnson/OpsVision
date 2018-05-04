@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+
+
+<table width="90%">
+    <tr>
+        <td>
+            <div style="margin-left:60px;margin-top:20px">
+                  <b>Instructions:</b>
+                  <ul style="list-style-type: decimal;">
+                  <li>
+                  Double-click on a cell to edit.  Note only "Urls", "Descriptions", and "Updated By" are editable.  Edits are automatically saved to the database.
+                  </li>
+                  <li>
+                  To create a new Url, click Add Url button.  A new Url row will appear that can be edited.  Edits are automatically saved to the database.
+                  </li>
+                  <li>
+                  To delete a Url(s), first select a Url Row(s) by checking the lefthand side checkmark and then click Delete Url button.
+                  </li>
+                  </ul>
+            </div>
+        </td>
+                <td style="text-align:right; "><a href="#" ng-click="$back()">Back </a></td>
+            </tr>
+        </table>
+<br />
+<br />
+<div >
+ 
+   <div  ui-grid="gridOptions" class="gridStyle" ui-grid-selection ui-grid-edit ui-grid-row-edit ui-grid-auto-resize ui-grid-cellNav external-scopes="myExternalScope"></div>
+   <button class="col-md-1 btn-success btn pull-left" ng-click="addNewRow()">Add Url</button>
+   <button class="col-md-1 col-md-offset-1 btn-danger btn pull-left" ng-disabled="selectedRows.length == 0" ng-click="deleteRows()">Delete Url</button>
+ 
+</div>

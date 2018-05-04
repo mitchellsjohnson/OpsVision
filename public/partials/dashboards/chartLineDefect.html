@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8"><span ng-class="{true: 'responsive_largetxt', false: 'responsive_medtxt'}[viewModel.tv_view]">{{viewModel.metric_label}}</span></div>
+      <div class="col-sm-1 small_border_ctr responsive_smalltxt"  ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[viewModel.mtdmeasure]">MTD Count:&nbsp;{{viewModel.mtdcount}} </div>
+      
+      <div class="col-sm-1"><a href="#" ng-click="viewModel.$back()">Back </a></div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-9" >
+            <canvas id="line-chart" ></canvas>
+        </div>
+    </div>
+</div>

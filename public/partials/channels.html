@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+
+
+
+<table width="90%">
+    <tr>
+        <td>
+            <div style="margin-left:60px;margin-top:20px">
+                  <b>Instructions:</b>
+                  <ul style="list-style-type: decimal;">
+                  <li>
+                  Double-click on a cell to edit.  Note only "Channels", "Descriptions", and "Updated By" are editable.  Edits are automatically saved to the database.
+                  </li>
+                  <li>
+                  To create a new Channel, click Add Channel button.  A new Channel row will appear that can be edited.  Edits are automatically saved to the database.
+                  </li>
+                  <li>
+                  To delete a Channel(s), first select a Channel Row(s) by checking the lefthand side checkmark and then click Delete Channel button.
+                  </li>
+                  </ul>
+            </div>
+        </td>
+                <td style="text-align:right; "><a href="#" ng-click="viewModel.$back()">Back </a></td>
+            </tr>
+        </table>
+<br />
+<br />
+<div >
+ 
+   <div  ui-grid="gridOptions" class="gridStyle" ui-grid-selection ui-grid-edit ui-grid-row-edit ui-grid-auto-resize ui-grid-cellNav external-scopes="viewModel.myExternalScope"></div>
+   <button class="btn-success btn pull-left" ng-click="viewModel.addNewRow()">Add Channel</button>
+   <button class="col-md-offset-1 btn-danger btn pull-left" ng-disabled="viewModel.selectedRows.length == 0" ng-click="viewModel.deleteRows()">Delete Channel(s)</button>
+ 
+</div>
+ 

@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<div class="table-responsive">
+   <table class="table ">
+
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px"> {{year}} Technology Service Fulfillment Metrics</th>
+            <th style="text-align:center; ">  <a href="#" ng-click="$back()">Back </a></th>
+            <th style="text-align:center; ">&nbsp;
+            </th>
+      </thead>
+   </table>
+</div>
+<!-- /.table-responsive -->
+<div >
+    <table class="table ">
+       <tr>
+          <td>
+             <label>Metric Name:&nbsp;&nbsp;</label>
+             {{metric_label}}
+          </td>
+          <td>
+             <label>Metric Created By:&nbsp;&nbsp;</label>
+             {{metric_created_by}}
+          </td>
+       </tr>
+    </table>
+    <br />
+    <br />
+    <br />
+</div>
+<div >
+    <table  class="table table-bordered">
+      <thead>
+         <tr>
+            <th style="background-color:lightblue; width:70%">Definition</th>
+            <th style="background-color:lightblue; width:10%">Green Threshold</th>
+            <th style="background-color:lightblue; width:10%">Yellow Threshold</th>
+            <th style="background-color:lightblue; width:10%">Red Threshold</th>
+         </tr>
+      </thead>
+      <tbody>
+           <tr>
+             <td>
+             <textarea class="form-control" name="definition" rows="20"  maxlength="2000" ng-model="metric_definition" readonly></textarea></td>
+
+
+             <td ng-if="type!='INITIATIVE' && type!='DELIVERY' && type!='SUCCESS_RATE'"><div class="small_border_ctr greenMetricLrg">Count <br /> <= <br />{{threshold_green | decorateNumberVal: display_type }}</div></td>
+             <td ng-if="type!='INITIATIVE' && type!='DELIVERY' && type!='SUCCESS_RATE'"><div class="small_border_ctr yellowMetricLrg">{{threshold_green | decorateNumberVal: display_type }}<br /><<br />Count <br /><=<br />{{threshold_yellow | decorateNumberVal: display_type }}</div></td>
+             <td ng-if="type!='INITIATIVE' && type!='DELIVERY' && type!='SUCCESS_RATE'"><div class="small_border_ctr redMetricLrg">Count  <br /> > <br /> {{threshold_yellow | decorateNumberVal: display_type }}</div></td>
+             
+             <td ng-if="type==='DELIVERY'"><div class="small_border_ctr greenMetricLrg">Delivered Commitments <br /> >= <br />{{threshold_green | decorateNumberVal: display_type }}</div></td>
+             <td ng-if="type==='DELIVERY'"><div class="small_border_ctr yellowMetricLrg">{{threshold_yellow | decorateNumberVal: display_type }}<br /><= <br />Delivered Commitments <br /><<br />{{threshold_green | decorateNumberVal: display_type }}</div></td>
+             <td ng-if="type==='DELIVERY'"><div class="small_border_ctr redMetricLrg">Delivered Commitments <br /> < <br />{{threshold_yellow | decorateNumberVal: display_type }}</div></td>
+             
+             <td ng-if="type==='SUCCESS_RATE'"><div class="small_border_ctr greenMetricLrg">Percentage <br /> >= <br />{{threshold_green | decorateNumberVal: display_type }}</div></td>
+             <td ng-if="type==='SUCCESS_RATE'"><div class="small_border_ctr yellowMetricLrg">{{threshold_green | decorateNumberVal: display_type }}<br />> <br />Percentage <br />>=<br />{{threshold_yellow | decorateNumberVal: display_type }}</div></td>
+             <td ng-if="type==='SUCCESS_RATE'"><div class="small_border_ctr redMetricLrg">Percentage <br /> < <br />{{threshold_yellow | decorateNumberVal: display_type }}</div></td>
+
+                          
+               
+             <td ng-if="type==='INITIATIVE'"><div class="small_border_ctr greenMetricLrg">{{threshold_green}}</div></td>
+             <td ng-if="type==='INITIATIVE'"><div class="small_border_ctr yellowMetricLrg">{{threshold_yellow }}</div></td>
+             <td ng-if="type==='INITIATIVE'"><div class="small_border_ctr redMetricLrg">{{threshold_red }}</div></td>
+
+           </tr>
+     </tbody>
+    </table>
+ 
+    <br />
+    <br />
+</div>

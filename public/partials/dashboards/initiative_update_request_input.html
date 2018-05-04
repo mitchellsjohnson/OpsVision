@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<div class="table-responsive">
+   <table class="table ">
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px">Initiative Update Request</th>
+            <th class="inputsubheader">  &nbsp;</th>
+            <th class="inputsubheader">  &nbsp;</th>
+            <th class="inputsubheader">  &nbsp;</th>
+            <th class="inputsubheader">  &nbsp;</th>
+            <th class="inputsubheader">  &nbsp;</th>
+            <th class="inputsubheader">  &nbsp;</th>
+            <th class="inputsubheader">  <a href="#" ng-click="viewModel.$back()">Back </a></th>
+      </thead>
+   </table>
+</div>
+<form name="initiativeUpdateRequest" id="initiativeUpdateRequest" method="post" novalidate>
+    <div class="alignright">
+        <div class="inlineblock"><span ng-if="viewModel.success" style="color:green; font-weight:bold">{{viewModel.success}}</span><span ng-if="viewModel.error" style="color:red; font-weight:bold">{{viewModel.error}}</span></div>
+        <div class="inlineblock" ng-show="viewModel.isAdmin && viewModel.initiativeUpdateRequest.initiative_update_request_id && viewModel.initiativeUpdateRequest.status_cd ==='PENDING'">&nbsp;<button type="submit" class="btn  btn-primary" ng-click="approve(viewModel.initiativeUpdateRequest)">Approve</button></div>
+        <div class="inlineblock" ng-show="viewModel.initiativeUpdateRequest.status_cd !='CANCELLED' && viewModel.initiativeUpdateRequest.status_cd !='APPROVED' ">&nbsp;<button type="submit" class="btn btn-success" ng-click="submit(viewModel.initiativeUpdateRequest)">Submit to Admin</button></div>
+        <div class="inlineblock" ng-show="viewModel.initiativeUpdateRequest.initiative_update_request_id && viewModel.initiativeUpdateRequest.status_cd ==='PENDING'">&nbsp;<button type="submit" class="btn btn-danger" ng-click="cancel(viewModel.initiativeUpdateRequest)">Cancel Request</button></div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Initiative Update Request Id</label>
+                <input type="text" class="form-control" name="initiative_update_request_id" readonly="readonly" ng-model="viewModel.initiativeUpdateRequest.initiative_update_request_id" required />
+            </div>
+            <div class="col-xs-2">
+                <label class="control-label">Initiative ID</label>
+                <input type="text" class="form-control" name="metric_id" readonly="readonly" ng-model="viewModel.initiativeUpdateRequest.metric_id" required />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Initiative Name&nbsp;</label>
+                <input type="text" class="form-control" name="label" readonly="readonly" ng-model="viewModel.initiativeUpdateRequest.label" required />
+            </div>
+            <div class="col-xs-2">
+                <label class="control-label">Update Request Status Code&nbsp;</label>
+                <input type="text" class="form-control" name="status_cd" readonly="readonly" ng-model="viewModel.initiativeUpdateRequest.status_cd" required />
+            </div>
+        </div>
+    </div>
+
+   
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Status As Of Date&nbsp;<span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="status_dt" ng-readonly="viewModel.initiativeUpdateRequest.status_cd ==='CANCELLED' || viewModel.initiativeUpdateRequest.status_cd ==='APPROVED'" ng-model="viewModel.initiativeUpdateRequest.status_dt" required />
+            </div>
+            <div class="col-xs-2">
+                <label class="control-label">Percent Complete&nbsp;<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="percent_complete" min="0" max="100" ng-readonly="viewModel.initiativeUpdateRequest.status_cd ==='CANCELLED' || viewModel.initiativeUpdateRequest.status_cd ==='APPROVED'" ng-model="viewModel.initiativeUpdateRequest.percent_complete" required />
+            </div>
+            <div class="col-xs-3" ng-class="{'divbg_green': viewModel.initiativeUpdateRequest.status==='GREEN','divbg_yellow': viewModel.initiativeUpdateRequest.status==='YELLOW', 'divbg_red': viewModel.initiativeUpdateRequest.status==='RED'   }">
+                <label class="control-label">Status&nbsp;<span style="color:red">*</span></label>
+
+                <select name="status" class="gyr_dd" ng-disabled="viewModel.initiativeUpdateRequest.status_cd ==='CANCELLED'  || viewModel.initiativeUpdateRequest.status_cd ==='APPROVED'" ng-model="viewModel.initiativeUpdateRequest.status" ng-change="viewModel.requireDiscussionItemCheck()" required>
+                    <option value="" selected disabled >Select Status</option>
+                    <option value="GREEN" class="optiong">Green</option>
+                    <option value="YELLOW" class="optiony">Yellow</option>
+                    <option value="RED" class="optionr">Red</option>
+                </select>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="form-group">
+        <div class="form-group" ng-show="viewModel.requireDiscussionItem" ng-required="viewModel.requireDiscussionItem">
+            <label class="control-label">Discussion Point&nbsp;<span style="color:red">*</span> </label><br />
+            <span style="font-weight:bold">***Provide root cause and corrective action for <span style="font-weight:bold; background-color: yellow">&nbsp;&nbsp;&nbsp;</span>&nbsp;Yellow OR <span style="font-weight:bold; background-color: red">&nbsp;&nbsp;&nbsp;</span>&nbsp;Red Status</span>
+            <textarea class="form-control" name="discussion_point_detail" rows="5" ng-readonly="viewModel.initiativeUpdateRequest.status_cd ==='CANCELLED' || viewModel.initiativeUpdateRequest.status_cd ==='APPROVED'" ng-model="viewModel.initiativeUpdateRequest.discussion_point_detail" required></textarea>
+        </div>
+        <div class="form-group" ng-hide="viewModel.requireDiscussionItem" >
+            <label class="control-label">Discussion Point</label><br />
+            <span style="font-weight:bold">***OPTIONAL:  Provide monthly discussion item for <span style="font-weight:bold; background-color: green">&nbsp;&nbsp;&nbsp;</span>&nbsp;Green Status</span>
+            <textarea class="form-control" name="discussion_point_detail" rows="5" ng-readonly="viewModel.initiativeUpdateRequest.status_cd ==='CANCELLED' || viewModel.initiativeUpdateRequest.status_cd ==='APPROVED'" ng-model="viewModel.initiativeUpdateRequest.discussion_point_detail"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <div class="form-group" >
+            <label class="control-label">Comment</label><br />
+            <span style="font-weight:bold">***OPTIONAL: Will be Viewable by Admin Only  </span>
+            <textarea class="form-control" name="comment" rows="5" ng-readonly="viewModel.initiativeUpdateRequest.status_cd ==='CANCELLED' || viewModel.initiativeUpdateRequest.status_cd ==='APPROVED'" ng-model="viewModel.initiativeUpdateRequest.comment"></textarea>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Status Provided by&nbsp;<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="status_submitted_by" ng-readonly="viewModel.initiativeUpdateRequest.status_cd ==='CANCELLED' || viewModel.initiativeUpdateRequest.status_cd ==='APPROVED'" ng-model="viewModel.initiativeUpdateRequest.status_submitted_by" required />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Updated By&nbsp;<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="updated_by" maxlength="100" ng-readonly="viewModel.initiativeUpdateRequest.status_cd ==='CANCELLED' || viewModel.initiativeUpdateRequest.status_cd ==='APPROVED'" ng-model="viewModel.initiativeUpdateRequest.updated_by" required />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Updated On</label>
+                <input type="date" class="form-control" name="updated" readonly="readonly" ng-model="viewModel.initiativeUpdateRequest.updated" />
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="row">
+
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="row ">
+            <div class="col-xs-2" ng-hide="viewModel.isAdmin && viewModel.initiativeUpdateRequest.initiative_update_request_id">
+                <label class="control-label">Status Approved By&nbsp;</label>
+                <input type="text" class="form-control" name="status_approved_by" readonly="readonly" ng-readonly="viewModel.initiativeUpdateRequest.status_cd ==='CANCELLED' || viewModel.initiativeUpdateRequest.status_cd ==='APPROVED'" ng-model="viewModel.initiativeUpdateRequest.status_approved_by" />
+            </div>
+            <div class="col-xs-2" ng-show="viewModel.isAdmin && viewModel.initiativeUpdateRequest.initiative_update_request_id" ng-required="viewModel.isAdmin">
+                <label class="control-label">Status Approved By&nbsp;<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="status_approved_by" ng-readonly="viewModel.initiativeUpdateRequest.status_cd ==='CANCELLED' || viewModel.initiativeUpdateRequest.status_cd ==='APPROVED'" ng-model="viewModel.initiativeUpdateRequest.status_approved_by" required />
+            </div>
+            <div class="col-xs-2">
+                <label class="control-label">Approved Date</label>
+                <input type="date" class="form-control" name="approved_dt" readonly="readonly" ng-model="viewModel.initiativeUpdateRequest.approved_dt" />
+            </div>
+
+                
+     
+        </div>
+
+            <div class="alignright">
+                <div class="inlineblock"><span ng-if="viewModel.success" style="color:green; font-weight:bold">{{viewModel.success}}</span><span ng-if="viewModel.error" style="color:red; font-weight:bold">{{viewModel.error}}</span></div>
+                <div class="inlineblock" ng-show="viewModel.isAdmin && viewModel.initiativeUpdateRequest.initiative_update_request_id && viewModel.initiativeUpdateRequest.status_cd ==='PENDING'" >&nbsp;<button type="submit" class="btn  btn-primary" ng-click="approve(viewModel.initiativeUpdateRequest)">Approve</button></div>
+                <div class="inlineblock" ng-show="viewModel.initiativeUpdateRequest.status_cd !='CANCELLED' && viewModel.initiativeUpdateRequest.status_cd !='APPROVED' ">&nbsp;<button type="submit" class="btn btn-success" ng-click="submit(viewModel.initiativeUpdateRequest)">Submit to Admin</button></div>
+                <div class="inlineblock" ng-show="viewModel.initiativeUpdateRequest.initiative_update_request_id && viewModel.initiativeUpdateRequest.status_cd ==='PENDING'">&nbsp;<button type="submit" class="btn btn-danger" ng-click="cancel(viewModel.initiativeUpdateRequest)">Cancel Request</button></div>
+            </div>
+</form>

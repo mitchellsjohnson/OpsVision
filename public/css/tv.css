@@ -1,0 +1,45 @@
+﻿html {
+	height: 100%;
+}
+
+body {
+	background: White;
+	position: absolute; 
+	top: 0; 
+	bottom: 0; 
+	right: 0; 
+	left: 0;
+}
+
+iframe {
+	box-sizing: border-box;
+}
+#id_div_top_row {
+    height:100%;
+	width: 100%;
+}
+#id_div_bottom_row {
+    height:100%;
+}
+#id_iframe_top {
+    height:100%;
+	width: 100%;
+}
+
+#id_iframe_bottom {
+    height:100%;
+	width: 100%;
+}
+#id_iframe_left, #id_iframe_right {
+    float: left;
+}
+
+#id_iframe_left {
+    width: 50%;
+    height:100%;
+}
+
+#id_iframe_right {
+    width: 50%;
+    height:100%;
+}

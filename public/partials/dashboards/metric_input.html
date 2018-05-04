@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<div class="table-responsive">
+   <table class="table ">
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px">Technology Service Fulfillment Metrics</th>
+            <th class="inputsubheaderselected">  <a href="/metric_edit/{{metric_id}} ">Edit Metric</a></th>
+            <th class="inputsubheader">  <a href="/metric_measurements/{{metric_id}}/{{year}}">Add Metric Measurements</a> </th>
+            <th class="inputsubheader">  <a href="/metric_meta_data/{{metric_id}}">Edit Initiative Meta Data</a> </th>
+            <th class="inputsubheader">  <a href="/metrics/ ">Metrics Admin</a></th>
+            <th class="inputsubheader">  <a href="/metric_edit/{{previous_metric_id}}">Previous</a></th>
+            <th class="inputsubheader">  <a href="/metric_edit/{{next_metric_id}} ">Next</a> </th>
+            <th class="inputsubheader">  <a href="#" ng-click="$back()">Back </a></th>
+      </thead>
+   </table>
+</div>
+<form id="metricForm" method="post">
+
+<div class="pull-right"><span ng-if="success" style="color:green; font-weight:bold">{{success}}</span><span ng-if="error" style="color:red; font-weight:bold">{{error}}</span>&nbsp;<button type="submit" class="btn btn-default" ng-click="submit(metric)">Submit</button></div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Metric ID</label>
+                <input type="text" class="form-control" name="metric_id" readonly="readonly" ng-model="metric.metric_id" required />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Metric Code&nbsp;<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="metric_cd"  maxlength="100" ng-model="metric.metric_cd" required />
+            </div>
+
+            <div class="col-xs-4">
+                <label class="control-label">Label&nbsp;<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="label"  maxlength="1000" ng-model="metric.label" required/>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+            <div class="form-group">
+                <label class="control-label">Definition&nbsp;<span style="color:red">*</span></label>
+                <textarea class="form-control" name="definition" rows="10"  maxlength="2000" ng-model="metric.definition" required></textarea>
+            </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Project</label>
+                <input type="text" class="form-control" name="project"  maxlength="1000" ng-model="metric.project" />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Area</label>
+                <input type="text" class="form-control" name="area"  maxlength="1000" ng-model="metric.area" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-3">
+                <label class="control-label">Green Threshold&nbsp;<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="threshold_green"  ng-model="metric.threshold_green" required/>
+            </div>
+
+            <div class="col-xs-3">
+                <label class="control-label">Yellow Threshold&nbsp;<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="threshold_yellow"   ng-model="metric.threshold_yellow" required/>
+            </div>
+
+            <div class="col-xs-3">
+                <label class="control-label">Red Threshold&nbsp;<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="threshold_red"    ng-model="metric.threshold_red" required/>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-3">
+                <label class="control-label">Start Date&nbsp;<span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="metric_start_date"  ng-model="metric.metric_start_date" required/>
+            </div>
+
+            <div class="col-xs-3">
+                <label class="control-label">Parent metric Id</label>
+                <input type="number" class="form-control" name="parent_metric_id"   ng-model="metric.parent_metric_id" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-3">
+                <label class="control-label">Type&nbsp;<span style="color:red">*</span></label>
+                <select name="type" ng-model="metric.type" required>
+                    <option value="" selected disabled>Select Type</option>
+                   <option value="DELIVERY">Delivery</option>
+                    <option value="UPTIME">Uptime</option>
+                    <option value="PROJECT">Project</option>
+                    <option value="CLIENTREPORTED_PROJECT">Client Reported Project</option>
+                    <option value="AREA">Area</option>
+                    <option value="CLIENTREPORTED_AREA">Client Reported Area</option>
+                    <option value="INITIATIVE">Initiative</option>
+                    <option value="AVERAGE">Average</option>
+                    <option value="SUCCESS_RATE">Success Rate</option>
+                </select>
+            </div>
+
+            <div class="col-xs-3">
+                <label class="control-label">Display Type&nbsp;<span style="color:red">*</span></label>
+                <select name="type" ng-model="metric.display_type" required>
+                    <option value="" selected disabled>Select Display Type</option>
+                    <option value="PERCENTAGE">Percentage</option>
+                    <option value="DECIMAL">Decimal</option>
+                </select>
+            </div>
+
+            <div class="col-xs-3">
+                <label class="control-label">Calculation Interval&nbsp;<span style="color:red">*</span></label>
+                <select name="calculation_interval" ng-model="metric.calculation_interval" required >
+                    <option value="" selected disabled>Select Display Type</option>
+                    <option value="MONTHLY">Monthly</option>
+                    <option value="REAL_TIME">Real Time</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Updated On</label>
+                <input type="date" class="form-control" name="updated" readonly="readonly" ng-model="metric.updated" />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Updated By&nbsp;<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="updated_by"  maxlength="100" ng-model="metric.updated_by" required/>
+            </div>
+
+        </div>
+    
+    </div>
+    
+    <div class="pull-right"><span ng-if="success" style="color:green; font-weight:bold">{{success}}</span><span ng-if="error" style="color:red; font-weight:bold">{{error}}</span>&nbsp;<button type="submit" class="btn btn-default" ng-click="submit(metric)">Submit</button></div>
+</form>
+
+
+

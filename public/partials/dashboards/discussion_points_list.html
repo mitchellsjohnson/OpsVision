@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+
+
+
+<table width="90%">
+    <tr>
+        <td>
+            <div style="margin-left:60px;margin-top:20px">
+                  <b>Instructions:</b>
+                  <ul style="list-style-type: decimal;">
+                  <li>
+                  Double-click on a cell to edit. Edits are automatically saved to the database.
+                  </li>
+                  <li>
+                  To attach a new Discussion Point, click Add Discussion Point button.  A new Discussion Point row will appear that can be edited.  Edits are automatically saved to the database.
+                  </li>
+                  <li>
+                  To delete a Discussion Point from a Metric, first select a Row(s) by checking the lefthand side checkmark and then click Delete button.
+                  </li>
+                  </ul>
+
+            </div>
+        </td>
+                <td style="text-align:right; "><a href="#" ng-click="$back()">Back </a></td>
+            </tr>
+        </table>
+<br />
+<div><a class="btn-success btn pull-left" type="button" href="/discussion_point_input/">Add Discussion Point </a></div>
+<br />
+<br />
+<div >
+ 
+   <div  ui-grid="gridOptions" class="gridStyle" ui-grid-selection ui-grid-edit ui-grid-row-edit ui-grid-auto-resize ui-grid-cellNav external-scopes="myExternalScope"></div>
+<br />
+   <a class="btn-success btn pull-left" type="button" href="/discussion_point_input/">Add Discussion Point </a>
+   <button class="col-md-offset-1 btn-danger btn pull-left" ng-disabled="selectedRows.length == 0" ng-click="deleteRows()">Delete Discussion Point</button>
+   <button class="col-md-offset-1 btn-warning btn pull-left" ng-disabled="selectedRows.length == 0" ng-click="detachRows()">Detach Discussion Point from Metrics</button>
+</div>

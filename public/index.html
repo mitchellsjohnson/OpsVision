@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html lang="en" ng-app="opsVisionApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author"  content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>OpsVision</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/bower_components/angular-ui-grid/ui-grid.css">
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+
+  <body role="document">
+    <!-- Fixed navbar -->
+      <div >
+          <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+              <div class="container-fluid">
+                  <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="/home">OpsVision</a>
+                  </div>
+                  <div id="navbar" class="navbar-collapse collapse">
+                      <ul class="nav navbar-nav">
+                          <li class="active"><a href="/home_admin">Home</a></li>
+                          <li class="dropdown">
+                              <a href="/broadcast_list/" class="dropdown-toggle" data-toggle="dropdown">eVestment TV <span class="caret"></span></a>
+                          </li>
+                          <li class="dropdown">
+                              <a href="/dashboard_details/35/2018/" class="dropdown-toggle" data-toggle="dropdown">Metrics <span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                  <li><a href="/dashboard_details/35/2018">2018</a></li>
+                                  <li><a href="/dashboard_details/35/2017">2017</a></li>
+                                  <li><a href="/dashboard_details/22/2016">2016</a></li>
+                                  <li><a href="/dashboard_details/1/2015">2015</a></li>
+                                  <li><a href="/dashboard_details/1/2014">2014</a></li>
+
+                              </ul>
+                          </li>
+                          <li class="dropdown">
+                              <a href="/initiative_dashboard/40/2018/1/6/" class="dropdown-toggle" data-toggle="dropdown">Initiative Dashboards <span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                  <li><a href="/initiative_dashboard/41/2018/7/6">Strategic Initiatives 2018 - 2H2018</a></li>
+                                  <li><a href="/initiative_dashboard/40/2018/1/6">Strategic Initiatives 2018 - 1H2018</a></li>
+                                  <li><a href="/initiative_dashboard/42/2018/1/12">Operational Initiatives 2018</a></li>
+                                  <li><a href="/initiative_dashboard/28/2017/7/6">Strategic Initiatives 2017 - 2H2017</a></li>
+                                  <li><a href="/initiative_dashboard/27/2017/1/6">Strategic Initiatives 2017 - 1H2017</a></li>
+                                  <li><a href="/initiative_dashboard/30/2017/1/12">Operational Initiatives 2017</a></li>
+                                  <li><a href="/home">Previous Periods</a></li>
+                              </ul>
+                          </li>
+                          <li class="dropdown">
+                              <a href="/roadmap_list/" class="dropdown-toggle" data-toggle="dropdown">Agile Governance <span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                  <li><a href="/roadmap_list/">Roadmaps</a></li>
+                                  <li><a href="/resourceplan_list/">Resource Plans</a></li>
+                              </ul>
+                          </li>
+                          <li class="dropdown">
+                              <a href="/dashboard_details/23/2018" class="dropdown-toggle" data-toggle="dropdown">DevOps <span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                  <li><a href="/dashboard_details/23/2018">Build Metrics 2018</a></li>
+                                  <li><a href="/dashboard_details/23/2017">Build Metrics 2017</a></li>
+                                  <li><a href="/dashboard_details/23/2016">Build Metrics 2016</a></li>
+                              </ul>
+                          </li>
+                      </ul>
+
+                  </div><!--/.nav-collapse -->
+              </div>
+          </nav>
+      </div>
+    <div  class="container-fluid theme-showcase " role="main">
+ 	
+             <div ng-view></div>
+
+    </div> <!-- /container -->
+
+    <!-- Bootstrap and Angular core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+      
+      <script src="/bower_components/jquery/jquery.min.js"></script>
+      <script src="/bower_components/angular/angular.min.js"></script>
+      <script src="/bower_components/angular-route/angular-route.min.js"></script>
+      <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+      <script src="/bower_components/angular-ui-grid/ui-grid.min.js"></script>
+      <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+      <script src="/bower_components/angular-cookies/angular-cookies.min.js"></script>
+      <script src="/bower_components/Chart.js/Chart.min.js"></script>
+      <script src="/bower_components/angular-smart-table/dist/smart-table.min.js"></script>
+      <script src="/bower_components/tc-angular-chartjs/dist/tc-angular-chartjs.min.js"></script>
+      <script src="/js/app.js"></script>
+      <script src="/js/filters/filters.js"></script>
+ 
+ </body>
+<script src="/bower_components/Chart.js/Chart.min.js"></script>
+</html>
+
+
+

@@ -1,0 +1,6 @@
+
+<div align="center">
+   <select ui-grid-edit-dropdown ng-class="'colt' + $index" ng-model="row.entity.parent_metric_id" data-ng-options="item.metric_id as item.name for item in getExternalScopes().metrics_dds">
+    <option value="" selected disabled>Select Metric</option>
+</select>
+</div>

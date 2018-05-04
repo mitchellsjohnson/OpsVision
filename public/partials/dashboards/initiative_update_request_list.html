@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<div class="table-responsive">
+   <table class="table ">
+
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px"> {{viewModel.year}} Technology Service Fulfillment Metrics</th>
+             <th style="text-align:center; ">  <span><a href="#" ng-click="viewModel.$back()">Back </a> </span>&nbsp;</th>
+            <th style="text-align:center; ">&nbsp;
+            </th>
+      </thead>
+   </table>
+</div>
+<!-- /.table-responsive -->
+<div >
+   <div >
+      <table class="table ">
+      
+         <tr>
+          
+           <td>
+           <div>Dashboard: </div> 
+           <span class="justbold">{{viewModel.dashboardName}} for the {{viewModel.monthName}}, {{viewModel.year}} Measurement Period</span>
+           </td>
+           <td></td>
+           <td></td>
+           <td width="12%"></td>
+           <td width="12%"></td>
+           <td width="12%"></td>
+           <td width="12%"></td>
+           <td width="10%"></td>
+ 
+       </tr>
+       <tr><td>&nbsp;</td>
+           <td>&nbsp;</td>
+           <td>&nbsp;</td>
+           <td>&nbsp;</td>
+           <td>&nbsp;</td>
+           <td>&nbsp;</td>
+           <td><div class="center"> <a href='/initiative_update_request_list/{{viewModel.dashboard_id}}/{{viewModel.prev_month}}/{{viewModel.prev_year}}'> Previous Month </a> </div>  </td>
+           <td><div class="center"> <a href='/initiative_update_request_list/{{viewModel.dashboard_id}}/{{viewModel.next_month}}/{{viewModel.next_year}}'> Next Month</a> </div></td>
+       </tr>
+       </table>
+    </div>
+</div>
+<div>
+        <style>
+        .sortable {  cursor: pointer;}
+        .st-sort-ascent i,.st-sort-descent i {  padding-left: 4px;}
+        .st-sort-ascent i:before {  content: '\25B2';}
+        .st-sort-descent i:before {  content: '\25BC';}
+        </style>
+       <table st-table="displayedCollection"  st-safe-src="viewModel.rowCollection" class="table table-striped">
+	    <thead>
+	    <tr>
+     	    <th >Row # </th>
+            <th st-sort="metric_id">Initiative Id <i st-sort="metric_id"></i></th>
+            <th st-sort="label">Initiative Name <i st-sort="label"></i></th>
+            <th st-sort="status_submitted_by">Status Author <i st-sort="status_submitted_by"></i></th>
+		    <th st-sort="percent_complete" >% Complete <i st-sort="percent_complete"></i></th>
+            <th st-sort="status">Status <i st-sort="status"></i></th>
+		    <th st-sort="technology_lead">Tech Lead <i st-sort="technology_lead"></i></th>
+		    <th st-sort="product_lead">Product Lead <i st-sort="product_lead"></i></th>
+            <th st-sort="initiative_update_request_status_cd">Request Status Code <i st-sort="initiative_update_request_status_cd"></i></th>
+            <th st-sort="status_dt">Status Date <i st-sort="status_dt"></i></th>
+            <th st-sort="status_approved_by">Approved By <i st-sort="status_approved_by"></i></th>
+            <th st-sort="approved_dt">Approved Date <i st-sort="approved_dt"></i></th>
+            <th>&nbsp;</th>
+	    </tr>
+	    <tr>
+		    <th>
+			    &nbsp;
+		    </th>
+            <th>
+                <input st-search="metric_id" placeholder="search Initiative ID" class="input-sm form-control" type="search" />
+            </th>
+            <th>
+                <input st-search="label" placeholder="search Initiative Name" class="input-sm form-control" type="search" />
+            </th>
+            <th>
+                <input st-search="status_submitted_by" placeholder="search Status Author" class="input-sm form-control" type="search" />
+            </th>
+            <th>
+                <input st-search="percent_complete" placeholder="search % Complete" class="input-sm form-control" type="search" />
+            </th>
+            <th>
+                <input st-search="status" placeholder="search Status G/Y/R" class="input-sm form-control" type="search" />
+            </th>
+            <th>
+                <input st-search="technology_lead" placeholder="search Tech Lead" class="input-sm form-control" type="search" />
+            </th>
+            <th>
+                <input st-search="product_lead" placeholder="search Product Lead" class="input-sm form-control" type="search" />
+            </th>
+            <th>
+                <input st-search="initiative_update_request_status_cd" placeholder="search Request Status Code" class="input-sm form-control" type="search" />
+            </th>
+            <th>
+                <input st-search="status_dt" placeholder="search Status Date" class="input-sm form-control" type="search" />
+            </th>
+            <th>
+                <input st-search="status_approved_by" placeholder="search Approved By" class="input-sm form-control" type="search" />
+            </th>
+            <th>
+                <input st-search="approved_dt" placeholder="search Approved Date" class="input-sm form-control" type="search" />
+            </th>
+            <th>
+                &nbsp;
+            </th>
+	    </tr>
+	    </thead>
+	    <tbody>
+	    <tr ng-repeat="row in displayedCollection">
+            <td>{{$index + 1}}</td>   
+            <td>{{row.metric_id}}</td> 
+		    <td>{{row.label}}</td>
+		    <td>{{row.status_submitted_by}}</td>
+		    <td>{{row.percent_complete}}</td>
+		    <td>{{row.status}}</td>
+		    <td>{{row.technology_lead}}</td>
+            <td>{{row.product_lead}}</td>
+            <td>{{row.initiative_update_request_status_cd}}</td>
+		    <td>{{row.status_dt}}</td>
+            <td>{{row.status_approved_by}}</td>
+            <td>{{row.approved_dt}}</td>
+            <td>
+                <div class="alignright">
+                    <div class="inlineblock" ng-show="row.initiative_update_request_status_cd ==='PENDING'"> <a class="btn-success btn pull-left" type="button" href="/initiative_update_request/{{row.metric_id}}/{{row.initiative_update_request_id}}"> Edit </a></div>
+                </div>
+            </td>
+	    </tr>
+	    </tbody>
+    </table>
+</div>

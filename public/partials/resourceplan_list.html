@@ -1,0 +1,22 @@
+<table width="90%">
+    <tr>
+        <td>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Review the Resource Plan</h3>
+                </div>
+               
+  
+                <div class="panel-body" ng-repeat="resourceplan in resourceplans">
+             
+                  <a href="{{ resourceplan.url_string }}"  target="_blank">{{ resourceplan.description}}  </a>&nbsp;(Uploaded on {{ resourceplan.updated}} by  {{ resourceplan.updated_by}} )
+                </div>
+                </div>
+            </div><!-- /.col-sm-4 -->
+        </div>
+      </td>
+        <td style="text-align:right; vertical-align: top;"><a href="#" ng-click="$back()">Back </a></td>
+    </tr>
+</table>

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<div class="table-responsive">
+   <table class="table ">
+
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px"> {{year}} Technology Service Fulfillment Metrics</th>
+            <th style="text-align:center; "><a href="#" ng-click="$back()">Back </a></th>
+            <th style="text-align:center; ">&nbsp;
+            </th>
+      </thead>
+   </table>
+</div>
+<!-- /.table-responsive -->
+<div >
+    <table class="table ">
+       <tr>
+          <td>
+             <label>Metric Name:&nbsp;&nbsp;</label>
+             {{metric_label}}
+          </td>
+          <td>
+             <label>Discussion Point Created By:&nbsp;&nbsp;</label>
+             {{discussion_point_created_by}}
+          </td>
+          <td>
+             <div class="small_border_ctr"> MTD Metric:&nbsp;&nbsp; </div>
+             <div class="small_border_ctr" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric_measurement_mtd]">{{metric_value_mtd | decorateNumberVal: display_type }}</div>
+             <div class="small_border_ctr"> YTD Metric:&nbsp;&nbsp; </div>
+             <div class="small_border_ctr" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric_measurement_ytd]">{{metric_value_ytd | decorateNumberVal: display_type }}</div>
+          </td>
+       </tr>
+    </table>
+    <br />
+    <br />
+    <br />
+</div>
+    <div ><textarea class="form-control monospace" name="definition" rows="20"  maxlength="2000" ng-model="discussionpoint" readonly></textarea><br /><br /><br /></div>

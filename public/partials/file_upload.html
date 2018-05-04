@@ -1,0 +1,33 @@
+
+
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Upload File</h3>
+            </div>
+             <form>
+               <input type="file" ng-file-select="fileSelected($files)" accept="'image/*'">
+               <input type="submit" ng-click="uploadFile()" >
+             </form>
+          </div>
+        </div><!-- /.col-sm-4 -->
+    </div>
+      
+
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Manage or Download A File</h3>
+            </div>
+               
+
+            <div class="panel-body" ng-repeat="channel in channels">
+              <a href="/broadcasts/{{ channel.channel_cd }}"  target="_blank">{{ channel.description }}</a>
+            
+            </div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+    </div>
+      

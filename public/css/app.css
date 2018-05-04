@@ -1,0 +1,460 @@
+/* app css stylesheet */
+
+body {
+  padding-top:70px;
+}
+
+p {
+    color: black;
+}
+.mainheader1 {
+    font-size: 24px;
+}
+
+.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    width: 1800px;
+    height:400px;
+}
+
+.greyBox {
+    border: 1px solid;
+    color:lightgray
+}
+
+.greyBoxCenter {
+    border: 1px solid;
+    color:lightgray;
+    text-align:center
+}
+
+
+.black{
+    color:black
+}
+
+.gridStyleTall {
+    border: 1px solid rgb(212,212,212);
+    width: 1800px;
+    height:800px;
+}
+
+.gridStyleDefects {
+    border: 1px solid rgb(212,212,212);
+    width: 1600px;
+    height:500px;
+}
+
+.greenMetricLrg {
+    background-color:lightgreen;
+    font-weight: bold;
+    font-size: 16px;
+    vertical-align:center;    
+
+
+}
+
+.redText {
+    color:red;
+}
+
+.redMetricLrg {
+    background-color:red;
+    font-weight: bold;
+    font-size: 16px;
+    vertical-align:center;
+}
+.yellowMetricLrg {
+    background-color:yellow;
+    font-weight: bold;
+    font-size: 16px;
+    vertical-align:center;
+
+}
+
+
+.greenMetric {
+    background-color:lightgreen;
+    font-size: 12px;
+
+}
+.redMetric {
+    background-color:red;
+    font-size: 12px;
+ 
+ 
+}
+.yellowMetric {
+    background-color:yellow;
+    font-size: 12px;
+
+    
+}
+
+.grayMetric {
+    background-color:lightgray;
+    font-size: 12px;
+
+  
+}
+#metricsTable td 
+{
+    text-align:center; 
+    vertical-align:middle;
+}
+
+.justbold {
+  font-weight:bold;
+}
+
+.smallfont {
+  font-size: 8px;
+
+}
+
+.smalltxt {
+    font-size: 10px;
+}
+
+
+
+
+.boldsmalltxtwhitebg {
+    font-size: 10px;
+    font-style:italic;
+    background-color:white;
+}
+
+
+.boldsmalltxtyellowbg {
+    font-size: 10px;
+    font-style:italic;
+    background-color:yellow;
+}
+
+
+
+.medtxt {
+    font-size: 20px;
+}
+
+.midbold {
+  font-size: 10px;
+  font-weight:bold;
+}
+
+
+.boldmedtxtwhitebg {
+    font-size: 20px;
+    font-style:italic;
+    background-color:white;
+}
+
+.boldmedtxtyellowbg {
+    font-size: 20px;
+    font-style:italic;
+    background-color:yellow;
+}
+
+.largetxt {
+  font-size: 25px;
+}
+
+
+.boldlargetxtwhitebg {
+    font-size: 25px;
+    font-style:italic;
+    background-color:white;
+}
+
+.boldlargetxtyellowbg {
+    font-size: 25px;
+    font-style:italic;
+    background-color:yellow;
+}
+
+
+.bigbold {
+  font-size: 16px;
+  font-weight:bold;
+}
+
+
+
+
+.responsive_tinytxt {
+    font-size:1vw;
+}
+
+.responsive_smalltxt {
+    font-size:1.5vw;
+}
+
+.responsive_smalltxt_whitebg {
+    font-size:1.5vw;
+    font-style:italic;
+    background-color:white;
+}
+
+.responsive_smalltxt_yellowbg {
+    font-size:1.5vw;
+    font-style:italic;
+    background-color:yellow;
+}
+
+.responsive_medtxt {
+    font-size:2vw;
+}
+.responsive_largetxt {
+    font-size:2.7vw;
+}
+
+
+.responsive_largetvtxt {
+    font-size:4vw;
+}
+.responsive_jumbotvtxt {
+    font-size:4.5vw;
+}
+
+
+.jumbobold {
+  font-size: 40px;
+  font-weight:bold;
+}
+
+.jumbotxt {
+    font-size: 40px;
+}
+
+
+.morejumbobold {
+  font-size: 70px;
+  font-weight:bold;
+}
+
+
+
+.tvjumbotxt {
+    font-size: 80px;
+}
+
+
+.tvjumbobold {
+  font-size: 80px;
+  font-weight:bold;
+}
+
+
+
+
+
+
+
+
+.divoutline {
+     border: 1px solid lightgray;
+    outline-offset: 10px;
+}
+
+
+.divborder {
+    border: 1px solid;
+}
+table.table.table-condensed {
+    border: 1px solid black;
+}
+
+.relative {
+   position: relative;
+
+}
+
+
+
+
+.relative-icon-bottom-left {
+  
+   position: absolute;
+   bottom: -11px;
+   left: -6px;
+
+}
+
+.relative-icon-bottom-right {
+  
+   position: absolute;
+   bottom: -11px;
+   right: -6px;
+
+}
+
+.relative-icon-bottom-right-oneleft {
+  
+   position: absolute;
+   bottom: -11px;
+   right: 9px;
+
+}
+
+
+.relative-icon-bottom-right-twoleft {
+  
+   position: absolute;
+   bottom: -11px;
+   right: 24px;
+
+}
+
+
+
+.relative-icon-bottom-right-threeleft {
+  
+   position: absolute;
+   bottom: -11px;
+   right: 39px;
+
+}
+
+
+.relative-icon-bottom-right-fourleft {
+  
+   position: absolute;
+   bottom: -11px;
+   right: 54px;
+
+}
+
+
+.relative-icon-bottom-rightishtwo {
+  
+   position: absolute;
+   bottom: -11px;
+   right: 28px;
+
+}
+
+
+
+.relative-icon-top-right{
+  
+   position: absolute;
+   top: -25px;
+   right: -6px;
+
+}
+.metric_desc {
+    text-align:left;
+    font-size: 12px;
+    font-weight:bold;
+}
+
+
+.responsive-metric_desc-small {
+    text-align:left;
+    font-size:1vw;
+    font-weight:bold;
+}
+.small_border_ctr {
+    border: 1px solid;
+    text-align:center;
+}
+
+.small_border {
+    border: 1px solid;
+}
+
+.righttopspan {
+    bottom: 0px; 
+    right: -5px; 
+    position: absolute;
+}
+
+
+.borderltb {
+     border-bottom:1px dashed black;
+     border-top:1px dashed black;
+     border-left:1px dashed black;
+
+
+}
+
+
+.borderrtb {
+     border-bottom:1px dashed black;
+     border-top:1px dashed black;
+     border-right:1px dashed black;
+
+}
+
+
+.bordertb {
+    border-bottom: 1px dashed black;
+    border-top: 1px dashed black;
+}
+
+
+.inputsubheader {
+    text-align:center; 
+}
+
+
+.inputsubheaderselected {
+    text-align:center; 
+    background-color:yellow;
+  
+}
+
+
+.center {
+    text-align:center; 
+}
+
+.centeredContent{
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+.divbg_green{
+  background-color: green;
+}
+
+.divbg_yellow{
+  background-color: yellow;
+}
+
+.divbg_red{
+  background-color: red;
+}
+
+.divbg_white{
+  background-color: white;
+}
+select.gyr_dd option.optiong
+{
+    background-color: green;
+}
+
+select.gyr_dd option.optiony
+{
+    background-color: yellow;
+}
+
+select.gyr_dd option.optionr
+{
+    background-color: red;
+}
+
+.alignright
+{
+  text-align:right; 
+}
+.inlineblock {
+    display: inline-block;
+}
+
+.monospace
+{
+    font-family:monospace;
+}

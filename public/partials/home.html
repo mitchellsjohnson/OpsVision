@@ -1,0 +1,125 @@
+      <div class="page-header">
+        <h1>Access OpsVision</h1>
+      </div>
+    
+            <div class="row">
+                    <div class="col-md-6">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">Review the Metrics</h3>
+                        </div>
+                        <div class="panel-body">
+                          &#8226;&nbsp;<a href="/dashboard_details/22/2018/">2018</a> &nbsp;<br />
+                          &#8226;&nbsp;<a href="/dashboard_details/22/2017/">2017</a> &nbsp;<br />
+                          &#8226;&nbsp;<a href="/dashboard_details/22/2016/">2016</a> &nbsp;<br />
+                          &#8226;&nbsp;<a href="/dashboard_details/1/2015/">2015</a> &nbsp;<br />
+                          &#8226;&nbsp;<a href="/dashboard_details/1/2014/">2014</a>
+                        </div>
+                      </div>
+                    </div><!-- /.col-md-6 -->
+                    <div class="col-md-6">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">Review the Status of Strategic Initiatives</h3>
+                        </div>
+                        <div class="panel-body">
+                            &#8226;&nbsp;<a href="/initiative_dashboard/41/2018/7/6/">Strategic 2H2018</a> &nbsp;<br />
+                            &#8226;&nbsp;<a href="/initiative_dashboard/40/2018/1/6/">Strategic 1H2018</a> &nbsp;<br />
+                            &#8226;&nbsp;<a href="/initiative_dashboard/42/2018/1/12/">Operational 2018</a> &nbsp;<br />
+                            &#8226;&nbsp;<a href="/initiative_dashboard/28/2017/7/6/">Strategic 2H2017</a> &nbsp;<br />
+                            &#8226;&nbsp;<a href="/initiative_dashboard/27/2017/1/6/">Strategic 1H2017</a> &nbsp;<br />
+                            &#8226;&nbsp;<a href="/initiative_dashboard/30/2017/1/12/">Operational 2017</a> &nbsp;<br />
+                            &#8226;&nbsp;<a href="/initiative_dashboard/24/2016/7/6/">Strategic 2H2016</a> &nbsp;<br />
+                            &#8226;&nbsp;<a href="/initiative_dashboard/20/2016//7/6/">Strategic 1H2016</a> &nbsp;<br />
+                            &#8226;&nbsp;<a href="/initiative_dashboard/21/2016/1/12/">Operational 2016</a> &nbsp;<br />                       
+                            &#8226;&nbsp;<a href="/initiative_dashboard/19/2015/1/12/">Strategic 2015</a> &nbsp;<br />
+                        </div>
+                      </div>
+                    </div><!-- /.col-md-6 -->
+                </div><!-- /ROW -->
+
+                <div class="row" ng-show="viewModel.isAdmin === 'TRUE'">
+                   <div class="col-md-6">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">Metrics Administration</h3>
+                        </div>
+                        <div class="panel-body">
+                          &#8226;&nbsp;<a href="/discussion_points/">Discussion Points Admin</a> &nbsp;<br />
+                           &#8226;&nbsp;<a href="/metrics/">Metrics Admin</a> &nbsp;
+                        </div>
+                      </div>
+                    </div><!-- /.col-md-6 -->
+
+
+                    <div class="col-md-6">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">Watch a Channel Broadcast</h3>
+                        </div>
+                        <div class="panel-body">
+                          <a href="/broadcast_list">Click Here...</a>
+                        </div>
+                      </div>
+                    </div><!-- /.col-md-6 -->
+                </div><!-- /ROW -->
+
+                <div class="row" ng-show="viewModel.isAdmin === 'TRUE'">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">URL Administration</h3>
+                            </div>
+                            <div class="panel-body">
+                                <a href="/urls">Click Here...</a>
+                            </div>
+                        </div>
+                    </div><!-- /.col-md-6 -->
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Dashboard Administration</h3>
+                            </div>
+                            <div class="panel-body">
+                                <a href="/dashboards">Click Here...</a>
+                            </div>
+                        </div>
+                    </div><!-- /.col-md-6 -->
+                </div><!-- /ROW -->
+                <div class="row" ng-show="viewModel.isAdmin === 'TRUE'">
+                         <div class="col-md-6">
+                             <div class="panel panel-default">
+                                 <div class="panel-heading">
+                                     <h3 class="panel-title">Channel Administration</h3>
+                                 </div>
+                                 <div class="panel-body">
+                                     <a href="/channels">Click Here...</a>
+                                 </div>
+                             </div>
+                         </div><!-- /.col-md-6 -->
+                     <div class="col-md-6">
+                         <div class="panel panel-default">
+                             <div class="panel-heading">
+                                 <h3 class="panel-title">Splitscreen Channel Administration</h3>
+                             </div>
+                             <div class="panel-body">
+                                 <a href="/splitscreens">Click Here...</a>
+                             </div>
+                         </div>
+                     </div><!-- /.col-md-6 -->
+                </div> <!-- row -->  
+                  
+                <div class="row" ng-show="viewModel.isAdmin=== 'TRUE'">      
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Review Open Initiative Status Update Requests</h3>
+                            </div>
+                            <div class="panel-body">
+                                &#8226;&nbsp;<a href="/initiative_update_request_list/20/{{viewModel.current_month}}/{{viewModel.current_year}}">Strategic 2018</a> &nbsp;<br />
+                                &#8226;&nbsp;<a href="/initiative_update_request_list/21/{{viewModel.current_month}}/{{viewModel.current_year}}">Operational 2018</a> &nbsp;<br />
+                            </div>
+                        </div>
+                    </div><!-- /.col-md-6 -->
+
+                  </div> <!-- row -->

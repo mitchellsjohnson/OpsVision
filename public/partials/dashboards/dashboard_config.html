@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+
+
+
+<div style="margin-left:60px;margin-top:20px">
+      <b>Instructions:</b>
+      <ul style="list-style-type: decimal;">
+      <li>
+      Double-click on a cell to edit.  Note only "Modify Metric", "Sequence",  and "Updated By" are editable.  Edits are automatically saved to the database.
+      </li>
+      <li>
+      To attach a new Metric to a Dashboard, click Add Metric to Dashboard button.  A new Metric row will appear that can be edited.  Edits are automatically saved to the database.
+      </li>
+      <li>
+      To delete a Metric (s) from a Dashboard, first select a Metric Row(s) by checking the lefthand side checkmark and then click Delete Metric button.
+      </li>
+      </ul>
+</div>
+<br />
+<br />
+<div >
+ 
+   <div  ui-grid="gridOptions" class="gridStyle" ui-grid-selection ui-grid-edit ui-grid-row-edit ui-grid-auto-resize ui-grid-cellNav external-scopes="myExternalScope"></div>
+   <button class="btn-success btn pull-left" ng-click="addNewRow()">Add Metric to Channel</button>
+   <button class="col-md-offset-1 btn-danger btn pull-left" ng-disabled="selectedRows.length == 0" ng-click="deleteRows()">Delete Metric(s) from Dashboard</button>
+ 
+</div>
+ 

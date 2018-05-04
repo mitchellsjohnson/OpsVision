@@ -1,0 +1,22 @@
+<table width="90%">
+    <tr>
+        <td>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Review the Product Roadmap</h3>
+                </div>
+               
+  
+                <div class="panel-body" ng-repeat="roadmap in roadmaps">
+             
+                  <a href="{{ roadmap.url_string }}"  target="_blank">{{ roadmap.description}}  </a>&nbsp;(Uploaded on {{ roadmap.updated}} by  {{ roadmap.updated_by}} )
+                </div>
+                </div>
+            </div><!-- /.col-sm-4 -->
+        </div>
+      </td>
+        <td style="text-align:right; vertical-align: top;"><a href="#" ng-click="$back()">Back </a></td>
+    </tr>
+</table>

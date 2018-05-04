@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<div class="table-responsive">
+   <table class="table ">
+
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px"> {{viewModel.year}} Technology Service Fulfillment Metrics</th>
+            <th >   <span class="redText">Last Updated Date:</span> &nbsp;&nbsp;  {{viewModel.lastUpdatedDt }}  </th>
+            <th style="text-align:center; ">  <span><a href="#" ng-click="$back()">Back </a> </span>&nbsp;</th>
+            <th style="text-align:center; ">&nbsp;
+            </th>
+      </thead>
+   </table>
+</div>
+<!-- /.table-responsive -->
+<div >
+   <div >
+      <table class="table ">
+      
+         <tr>
+          
+           <td>
+           <div>Metric:  </div> 
+           <div class="justbold">{{viewModel.label}}</div>
+           </td>
+             <td>  <a href=  '/chart_defect_daily/{{ viewModel.metricId}}'>
+                     <i class="icon-bar-chart"></i>
+                  </a></td>
+           <td width="10%"> <div class="greyBox"><span class="black">Open Defect Count</span>&nbsp;&nbsp;</div>
+                            <div class="greyBoxCenter"><span class="black">{{viewModel.bugcount}}</span></div></td>
+           <td width="12%"> <div class="greyBox"><span class="black">Metric Defect Count Today</span>&nbsp;&nbsp;</div>
+                            <div class="greyBoxCenter"><span class="black">{{viewModel.bugcountMetricToday}}</span></div></td>
+           <td width="12%"> <div class="greyBox"><span class="black">Metric Defect Count Yesterday</span>&nbsp;&nbsp;</div>
+                            <div class="greyBoxCenter"><span class="black">{{viewModel.bugcountMetricYest}}</span></div></td>
+           <td width="10%">
+           <div class="greyBox"><span style="color:black"> MTD Metric:</span>&nbsp;&nbsp; </div><div class="greyBoxCenter" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[viewModel.metric_measurement_mtd]"><span class="black">{{viewModel.metric_value_mtd | decorateNumberVal: metric.displaytype }}</span></div>
+           <div class="greyBox"><span style="color:black"> YTD Metric:</span>&nbsp;&nbsp; </div><div class="greyBoxCenter" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[viewModel.metric_measurement_ytd]"><span class="black">{{viewModel.metric_value_ytd | decorateNumberVal: metric.displaytype }}</span></div>
+           </td>
+ 
+       </tr>
+       </table>
+    </div>
+</div>
+<div>
+        <style>
+        .sortable {  cursor: pointer;}
+        .st-sort-ascent i,.st-sort-descent i {  padding-left: 4px;}
+        .st-sort-ascent i:before {  content: '\25B2';}
+        .st-sort-descent i:before {  content: '\25BC';}
+        </style>
+       <table st-table="displayedCollection"  st-safe-src="viewModel.rowCollection" class="table table-striped">
+	    <thead>
+	    <tr>
+            <th>Row # </th>
+		    <th st-sort="issue_id" >Case # <i st-sort="issue_id"></i></th>
+		    <th st-sort="project">Project <i st-sort="project"></i></th>
+		    <th st-sort="area">Area <i st-sort="area"></i></th>
+            <th st-sort="priority">Priority <i st-sort="priority"></i></th>
+		    <th st-sort="title">Title <i st-sort="title"></i></th>
+		    <th st-sort="status">Status <i st-sort="status"></i></th>
+		    <th st-sort="clients_reporting">Client Reporting <i st-sort="clients_reporting"></i></th>
+		    <th st-sort="assigned_to">Assigned To <i st-sort="assigned_to"></i></th>
+		    <th st-sort="reported_by">Opened By <i st-sort="reported_by"></i></th>
+		    <th st-sort="date_reported">Opened Date <i st-sort="date_reported"></i></th>            
+	    </tr>
+	    <tr>
+            <th>
+                &nbsp;
+            </th>
+		    <th>
+			    <input st-search="bugid" placeholder="search Case #" class="input-sm form-control" type="search"/>
+		    </th>
+	        <th>
+			    <input st-search="project" placeholder="search project" class="input-sm form-control" type="search"/>
+		    </th>
+	        <th>
+			    <input st-search="area" placeholder="search area" class="input-sm form-control" type="search"/>
+		    </th>
+            <th>
+                <input st-search="priority" placeholder="search priority" class="input-sm form-control" type="search" />
+            </th>
+		    <th>
+			    <input st-search="title" placeholder="search title" class="input-sm form-control" type="search"/>
+		    </th>
+	        <th>
+			    <input st-search="status" placeholder="search Status" class="input-sm form-control" type="search"/>
+		    </th>
+		    <th>
+			    <input st-search="clientReporting" placeholder="search Client Reporting" class="input-sm form-control" type="search"/>
+		    </th>
+		    <th>
+			    <input st-search="person_assigned_to_name" placeholder="search Assigned To" class="input-sm form-control" type="search"/>
+		    </th>
+	        <th>
+			    <input st-search="person_opened_by_name" placeholder="search Opened By" class="input-sm form-control" type="search"/>
+		    </th>
+	        <th>
+			    <input st-search="dtOpened" placeholder="search Opened Date" class="input-sm form-control" type="search"/>
+		    </th>
+
+	    </tr>
+	    </thead>
+	    <tbody>
+        <tr><td colspan="9"><input st-search placeholder="global search" class="input-sm form-control" type="search"/></td></tr>
+	    <tr ng-repeat="row in displayedCollection">
+            <td>{{$index + 1}}</td>    
+		    <td>
+				<a ng-if="row.issue_id.indexOf('(FB)') > 0" href="https://fogbugz.evestment.com/?{{row.issue_id}}" target="_blank">{{row.issue_id}}</a>
+				<a ng-if="row.issue_id.indexOf('(FB)') == -1" href="https://evestment.atlassian.net/browse/{{row.issue_id}}" target="_blank">{{row.issue_id}}</a>
+			</td>
+		    <td>{{row.project}}</td>
+		    <td>{{row.area}}</td>
+            <td>{{row.priority}}</td>
+		    <td>{{row.title}}</td>
+		    <td>{{row.status}}</td>
+            <td>{{row.clients_reporting}}</td>
+		    <td>{{row.assigned_to}}</td>
+		    <td>{{row.reported_by}}</td>
+		    <td>{{row.date_reported}}</td>
+	    </tr>
+	    </tbody>
+    </table>
+</div>

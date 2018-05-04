@@ -1,0 +1,34 @@
+
+<br />
+<div><a class="btn-success btn pull-left" type="button" href="/splitscreen_input/">Add Splitscreen </a></div>
+<br />
+<br />
+
+
+
+<table width="90%">
+    <tr>
+        <td>
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Split Screen Administration</h3>
+                    </div>
+                    <div class="panel-body divUnderLine" ng-repeat="splitscreen in viewModel.splitScreens">
+                        <div class="row-fluid">
+                            <div class="col-sm-5">{{ splitscreen.channel_splitscreen_cd}}</div>
+                             <div class="col-sm-2"><a class="btn btn-xs btn-danger" type="button" ng-click="deleteRow(splitscreen.channel_splitscreen_id)" href="#">Delete </a>&nbsp;<a class="btn btn-xs btn-primary" type="button" href="/splitscreen_input/{{splitscreen.channel_splitscreen_id}}">Edit </a>&nbsp;<a class="btn btn-xs btn-success" type="button" href="/split_screen_broadcast/{{splitscreen.channel_splitscreen_id}}" target="_blank">Watch</a></div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-lg-12 -->
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align:right; vertical-align: top;"><a href="#" ng-click="viewModel.$back()">Back </a></td>
+    </tr>
+</table>
+<br />
+<div><a class="btn-success btn pull-left" type="button" href="/splitscreen_input/">Add Splitscreen </a></div>
+

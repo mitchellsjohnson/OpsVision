@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+
+<div >
+    <table class="table ">
+       <tr>
+          <td >
+             <span class="responsive_jumbotvtxt"> {{viewModel.metrics[0].label}}</span>
+          </td>
+     
+          <td><a href="#" ng-click="$back()">Back </a></td>
+
+       </tr>
+    </table>
+</div>
+
+
+<!-- /.table-responsive -->
+<div class="table-responsive">
+   <table class="table table-bordered" id="metricsTable">
+      <colgroup>
+         <col style="width:auto" ng-repeat="columnHeader in viewModel.columnHeaders">
+      </colgroup>
+      <thead>
+         <tr >
+            <th  class="responsive_smalltxt" style="background-color:lightgray; text-align:center" ng-repeat="columnHeader in viewModel.columnHeaders">{{columnHeader.value}}</th>
+             </tr>
+      </thead>
+      <tbody ng-repeat="metric in viewModel.metrics">
+         <tr >
+            <td  ng-repeat="cell in metric.cells" ng-style="{'border-top': cell.borderTop, 'border-bottom': cell.borderBottom,'border-left': cell.borderLeft, 'border-right': cell.borderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[cell.measure]">
+      
+                
+               <span class="responsive_largetxt ">{{ cell.val | decorateNumberVal: cell.displaytype:0 }}</span>&nbsp;
+               <div ng-hide="!cell.discussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metricId}}/{{ metric.dashboardId }}/{{ cell.month}}/{{ cell.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!cell.externalDashboard" class="relative">
+                  <a href='{{ cell.externalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+         </tr>
+         <tr>
+             <td ng-repeat="cell in metric.cells">
+                  <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!cell.planStart"><span class="responsive_smalltxt">{{ cell.planStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!cell.actualStart"><span class="responsive_smalltxt">{{ cell.actualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!cell.planLaunch"><span class="responsive_smalltxt">{{ cell.planLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!cell.targetLaunch"><span class="responsive_smalltxt_whitebg">{{ cell.targetLaunch }}&nbsp;<br /></span></div> 
+                  <div class="divborder" ng-hide="!cell.actualFinish"><span class="responsive_smalltxt_yellowbg">{{ cell.actualFinish }}&nbsp;<br /></span></div>
+               </a>
+             </td>
+         </tr>
+   </table>
+</div>
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h4 class="modal-title" id="myModalLabel">Milestone Definition</h4>
+         </div>
+         <div class="modal-body">
+            <ul>
+               <li><b>Plan Start:</b>  Initiative Start date set by Priority Committee during 2015 strategic planning.  </li>
+               <li><b>Plan Launch:</b>  Estimated Launch date (relative to Planned Start) set by Engineering team during 2015 strategic planning.  Estimates are created from high-level requirements and do not represent firm delivery commitments.  Target Launch dates are refined continuously as detailed requirements are finalized.</li>
+               <li><b>Actual Start:</b>  Actual Start date of initiative.</li>
+               <li><b>Actual Launch:</b>  Actual Launch date of initiative.</li>
+               <li><span style="background-color:yellow"><b><i>Target Launch:</i> </b> Represents current estimate of expected launch date for initiative that is in active development.  This is the most accurate planning date because it is created from the latest requirements and priority.  Projects that have not begun do not have a target launch.</span></li>
+            </ul>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div >
+    <table  class="table table-bordered">
+      <thead>
+         <tr>
+            <th style="background-color:lightblue; width:70%">Note</th>
+         </tr>
+      </thead>
+      <tbody>
+           <tr>
+             <td>
+                 <textarea style="font-size:30pt;" class="form-control" name="shortNote" rows="6"  maxlength="2000" ng-model="viewModel.metrics[0].shortNote" readonly></textarea></td>
+           </tr>
+     </tbody>
+    </table>
+
+    <table  class="table table-bordered">
+      <thead>
+         <tr>
+            <th style="background-color:lightblue; width:70%">Definition</th>
+         </tr>
+      </thead>
+      <tbody>
+           <tr>
+             <td>
+                 <textarea class="form-control" name="definition" rows="10"  maxlength="2000" ng-model="viewModel.metrics[0].definition" readonly></textarea></td>
+           </tr>
+     </tbody>
+    </table>
+     <table  class="table table-bordered">
+      <thead>
+         <tr>
+            <th style="background-color:lightblue; width:70%">Value Proposition</th>
+         </tr>
+      </thead>
+      <tbody>
+           <tr>
+             <td>
+                 <textarea class="form-control" name="valueProposition" rows="10"  maxlength="8000" ng-model="viewModel.metrics[0].valueProposition" readonly></textarea></td>
+           </tr>
+     </tbody>
+    </table>
+    <br />
+    <br />
+</div>

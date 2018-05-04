@@ -1,0 +1,286 @@
+﻿<div class="table-responsive">
+   <table class="table ">
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px">{{dashboard_description}} - {{year}}</th>
+            <th style="text-align:center; ">  <span ng-if="metric_id"><a href="#" ng-click="$back()">Back </a> </span>&nbsp;</th>
+              
+      </thead>
+   </table>
+</div>
+<!-- /.table-responsive -->
+<div class="table-responsive">
+   <table class="table table-bordered" id="metricsTable">
+      <colgroup>
+         <col style="width:3%">
+         <col style="width:25%">
+         <col style="width:5%">
+         <col style="width:5%" ng-show="month_display >=2">
+         <col style="width:5%" ng-show="month_display >=3">
+         <col style="width:5%" ng-show="month_display >=4">
+         <col style="width:5%" ng-show="month_display >=5">
+         <col style="width:5%" ng-show="month_display >=6">
+         <col style="width:5%" ng-show="month_display >=7">
+         <col style="width:5%" ng-show="month_display >=8">
+         <col style="width:5%" ng-show="month_display >=9">
+         <col style="width:5%" ng-show="month_display >=10">
+         <col style="width:5%" ng-show="month_display >=11">
+         <col style="width:5%" ng-show="month_display >=12">
+         <col style="width:7%">
+      </colgroup>
+      <thead>
+         <tr>
+            <th style="background-color:lightblue; text-align:center; ">#</th>
+            <th style="background-color:lightblue">metric</th>
+            <th style="background-color:lightgray; text-align:center">Jan</th>
+            <th style="background-color:lightgray; text-align:center"   ng-show="month_display >=2">Feb</th>
+            <th style="background-color:lightgray; text-align:center"   ng-show="month_display >=3">Mar</th>
+            <th style="background-color:lightgray; text-align:center"   ng-show="month_display >=4">Apr</th>
+            <th style="background-color:lightgray; text-align:center"   ng-show="month_display >=5">May</th>
+            <th style="background-color:lightgray; text-align:center"   ng-show="month_display >=6">Jun</th>
+            <th style="background-color:lightgray; text-align:center"   ng-show="month_display >=7">Jul</th>
+            <th style="background-color:lightgray; text-align:center"   ng-show="month_display >=8">Aug</th>
+            <th style="background-color:lightgray; text-align:center"   ng-show="month_display >=9">Sep</th>
+            <th style="background-color:lightgray; text-align:center"   ng-show="month_display >=10">Oct</th>
+            <th style="background-color:lightgray; text-align:center"   ng-show="month_display >=11">Nov</th>
+            <th style="background-color:lightgray; text-align:center"   ng-show="month_display >=12">Dec</th>
+            <th style="background-color:lightyellow; text-align:center">YTD</th>
+         </tr>
+      </thead>
+      <tbody ng-repeat="metric in metrics">
+         <tr>
+            <td>{{$index + 1}}</td>
+
+
+            <td style="text-align:left; " class="metric_desc">
+                <a href="/dashboard_details/{{ metric.dashboard_id }}/{{ metric.year }}/{{ metric.metric_id }}" ng-show="metric.HasChildDash ==='TRUE'"" >{{ metric.label }} </a>
+                <div ng-show="metric.HasChildDash ==='FALSE'">{{ metric.label }}</div>
+                <div class="relative" >
+                  <a href='/metric_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/{{metric.year}}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-question-circle-o"></i></div>
+                  </a>
+               </div>
+  
+               <div class="relative" ng-show="metric.viewtype === 'DELIVERY'">
+                       <a href='/commitments/{{ metric.metric_id}}/{{mr_month}}/{{year}}'>
+                          <div class="relative-icon-bottom-right-oneleft"><i class="fa fa-list-ol"></i></div>
+                       </a> 
+               </div>                
+                
+                              
+               <div class="relative" ng-show="metric.viewtype === 'PROJECT'   || metric.viewtype === 'AREA' || metric.viewtype === 'CLIENTREPORTED_PROJECT' || metric.viewtype === 'CLIENTREPORTED_AREA'">
+                       <a href='/defects/{{ metric.metric_id}}/{{ metric.dashboard_id }}/{{metric.viewtype}}'>
+                          <div class="relative-icon-bottom-right-oneleft"><i class="fa fa-bug"></i></div>
+                       </a> 
+                  <a href=  '/chart_line_defect/{{ metric.metric_id}}'>
+                     <div class="relative-icon-bottom-right-twoleft"><i class="fa fa-line-chart"></i></div>
+                  </a>
+                   <a href='/chart_stackbar_defect/{{ metric.metric_id}}' ng-show="isAdmin === 'TRUE'">
+                       <div class="relative-icon-bottom-right-threeleft"><i class="fa fa-bar-chart"></i></div>
+                   </a>
+               </div>
+
+               <div class="relative" ng-show="isAdmin === 'TRUE'">
+                  <a href='/metric_edit/{{ metric.metric_id}}'>
+                     <div class="relative-icon-top-right"><i class="fa fa-pencil-square-o"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.janmeasure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.janTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.janTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.janval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.janDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/1/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.febmeasure]" ng-show="month_display >=2"> 
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.febTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.febTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.febval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.febDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/2/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.marmeasure]" ng-show="month_display >=3">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.marTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.marTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.marval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.marDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/3/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.aprmeasure]" ng-show="month_display >=4">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.aprTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.aprTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.aprval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.aprDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/4/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.maymeasure]" ng-show="month_display >=5">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.mayTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.mayTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.mayval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.mayDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/5/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+              
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.junmeasure]" ng-show="month_display >=6">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.junTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.junTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.junval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.junDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/6/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.julmeasure]" ng-show="month_display >=7">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.julTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.julTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.julval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.julDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/7/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.augmeasure]" ng-show="month_display >=8">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.augTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.augTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.augval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.augDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/8/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.sepmeasure]" ng-show="month_display >=9">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.sepTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.sepTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.sepval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.sepDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/9/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.octmeasure]" ng-show="month_display >=10">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.octTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.octTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.octval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.octDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/10/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.novmeasure]" ng-show="month_display >=11">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.novTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.novTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.novval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.novDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/11/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.decmeasure]" ng-show="month_display >=12">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.decTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.decTargetLaunch }}&nbsp;<br /></span></div>   
+               </a>
+               {{ metric.decval | decorateNumberVal: metric.displaytype:metric.viewtype }}&nbsp;
+               <div ng-hide="!metric.decDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/12/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="fa fa-comment-o"></i></div>
+                  </a>
+               </div>
+                <div ng-hide="!metric.decExternalDashboard" class="relative">
+                  <a href='{{ metric.decExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.ytdmeasure]"> {{ metric.ytdval | decorateNumberVal: metric.displaytype:metric.viewtype }}</td>
+         </tr>
+   </table>
+</div>
+<div class="table-responsive">
+   <table>
+         <tr><td style="font-weight:bold">eVestment Proprietary and Confidential </td></tr>
+         <tr><td><sup>1</sup>&nbsp;<b>Methodology:</b>  Commitments and Platform Uptime are measured once per calendar month.  Defect measurements are calculated continuously using an equally weighted daily average. Detailed methodology available for each defect by clicking Info Icon <i class="icon-info-sign"></i>. </td></tr>     
+         <tr><td><sup>2</sup>&nbsp;<b>Defect Thresholds:</b> Defect thresholds were set by Product Management using a model created form historic client usage data. </td></tr>     
+         <tr><td><sup>3</sup>&nbsp;<b>Live Defects:</b>  Live, open defects and counts can be reviewed by clicking the Defect Icon <i class="fa fa-bug  "></i>.  Data continuously updated from defect tracking system. 
+         <tr><td><sup>4</sup>&nbsp;<b>Drill-down:</b> Drill-down into product and module-level metrics by clicking on the metric names.</td></tr>
+         <tr><td><sup>5</sup>&nbsp;<b>Discussion Items:</b>  In-depth Analysis of individual measurements are available by clicking Comment Icon <i class="fa fa-comment-o"></i>.</td></tr>
+         <tr><td><sup>6</sup>&nbsp;<b>Monthly Sprint Priorities:</b>  Monthly sprint Priorities are Available by clicking the Task Icon <i class="icon-tasks"></i>.</td></tr>
+       </table>
+</div>
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h4 class="modal-title" id="myModalLabel">Milestone Definition</h4>
+         </div>
+         <div class="modal-body">
+            <ul>
+               <li><span style="background-color:yellow"><b><i>Target Launch:</i> </b> Represents current estimate of expected launch date for initiative that is in active development.  This is the most accurate planning date because it is created from the latest requirements and priority.  Projects that have not begun do not have a target launch.</span></li>
+            </ul>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>

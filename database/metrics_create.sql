@@ -1,0 +1,26 @@
+CREATE TABLE `metrics` (
+  `metric_id` int(11) NOT NULL AUTO_INCREMENT,
+  `metric_cd` varchar(100) NOT NULL,
+  `label` varchar(1000) NOT NULL,
+  `definition` varchar(2000) NOT NULL,
+  `project` varchar(1000) DEFAULT NULL,
+  `area` varchar(1000) DEFAULT NULL,
+  `threshold_green` int(11) DEFAULT NULL,
+  `threshold_yellow` int(11) DEFAULT NULL,
+  `threshold_red` int(11) DEFAULT NULL,
+  `parent_metric_id` int(11) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` varchar(100) NOT NULL,
+  `updated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_by` varchar(100) DEFAULT NULL,
+  `metric_start_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `type` varchar(50) DEFAULT NULL,
+  `display_type` varchar(100) DEFAULT NULL,
+  `calculation_interval` varchar(50) NOT NULL DEFAULT 'REAL_TIME',
+  `definition_text` text,
+  PRIMARY KEY (`metric_id`),
+  UNIQUE KEY `uc_metrics_metric_cd` (`metric_cd`),
+  KEY `metrics_ibfk_1` (`parent_metric_id`),
+  CONSTRAINT `metrics_ibfk_1` FOREIGN KEY (`parent_metric_id`) REFERENCES `metrics` (`metric_id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=latin1;
+

@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title><%= page_title %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- styles -->
+    <link href="/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/js/iframe_lrgheader.js"></script>
+</head>
+<body style="overflow: hidden;">
+	<div style="height:100px; font-size:75px; font-weight:bold"><%= view.description %></div>
+    <iframe width="100%" style="border-width: 0;" src="<%= view.url %>" ></iframe>
+</body>
+</html>

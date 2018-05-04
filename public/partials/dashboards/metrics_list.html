@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+
+
+<table width="90%">
+    <tr>
+        <td>
+            <div style="margin-left:60px;margin-top:20px">
+                  <b>Instructions:</b>
+                  <ul style="list-style-type: decimal;">
+                  <li>
+                  Read-only grid.  Click 'Edit' to modify the Metric
+                  </li>
+                  <li>
+                  To add a Metric, click Add Metric button. 
+                  </li>
+                  <li>
+                  To delete a Metric, first select a Row(s) by checking the lefthand side checkmark and then click Delete button.
+                  </li>
+                  </ul>
+   
+            </div>
+        </td>
+                <td style="text-align:right; "><a href="#" ng-click="$back()">Back </a></td>
+            </tr>
+        </table>
+<br />
+<div><a class="btn-success btn pull-left" type="button" href="/metric_add/">Add Metric </a></div>
+<br />
+<br />
+<br />
+<div >
+  
+   <div  ui-grid="gridOptions" class="gridStyle" ui-grid-auto-resize></div>
+ 
+</div>
+<br />
+<br />
+<div><a class="btn-success btn pull-left" type="button" href="/metric_add/">Add Metric </a></div>
+ 

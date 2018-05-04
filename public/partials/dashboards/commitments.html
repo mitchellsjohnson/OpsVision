@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<div class="table-responsive">
+   <table class="table ">
+
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px">  Commitment Results for {{monthName}} {{year}}</th>
+            <th >   <span class="redText">Last Updated Date:</span> &nbsp;&nbsp;  {{LastUpdatedProdCommitDt}}  </th>
+             <th style="text-align:center; ">  <span><a href="#" ng-click="$back()">Back </a> </span>&nbsp;</th>
+            <th style="text-align:center; ">&nbsp;
+            </th>
+      </thead>
+   </table>
+</div>
+<!-- /.table-responsive -->
+<div >
+   <div >
+      <table class="table ">
+      
+         <tr>
+          
+           <td>
+           <div>Metric:  </div> 
+           <span class="justbold">{{label}} for the {{monthName}}, {{year}} Measurement Period</span>
+           </td>
+           <td></td>
+           <td></td>
+
+           <td width="12%">
+               <div class="greyBox"><span class="black">Committed and Delivered:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;</div>
+               <div class="greyBoxCenter"><span class="black">{{committedDeliveredCount}}</span></div>
+           </td>
+           <td width="12%">
+               <div class="greyBox"><span class="black">Delivered Without Commitment:</span>&nbsp;&nbsp;</div>
+               <div class="greyBoxCenter"><span class="black">{{notCommittedDeliveredCount}}</span></div>
+           </td>
+           <td width="12%">
+               <div class="greyBox"><span class="black">Missed Commitment:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;</div>
+               <div class="greyBoxCenter"><span class="black">{{missedCommitmentsCount}}</span></div>
+           </td>
+           <td width="12%">
+               <div class="greyBox"><span class="black">Total Commitment Opportunities:</span>&nbsp;&nbsp;</div>
+               <div class="greyBoxCenter"><span class="black">{{bugcount}}</span></div>
+        
+           </td>
+           <td width="10%">
+               <div class="greyBox"><span style="color:black"> MTD Metric:</span>&nbsp;&nbsp; </div><div class="greyBoxCenter" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric_measurement_mtd]"><span class="black">{{metric_value_mtd | decorateNumberVal: 'PERCENTAGE' }}</span></div>
+               <div class="greyBox"><span style="color:black"> YTD Metric:</span>&nbsp;&nbsp; </div>   <div class="greyBoxCenter" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric_measurement_ytd]"><span class="black">{{metric_value_ytd | decorateNumberVal: 'PERCENTAGE' }}</span></div>
+           </td>
+ 
+       </tr>
+       <tr><td>&nbsp;</td>
+           <td>&nbsp;</td>
+           <td>&nbsp;</td>
+           <td>&nbsp;</td>
+           <td>&nbsp;</td>
+           <td>&nbsp;</td>
+           <td><div class="center" ng-show="allow_previous_rollback === 'TRUE'"> <a href='/commitments/{{metric_id}}/{{prev_month}}/{{prev_year}}'> Previous Month </a> </div>  </td>
+           <td><div class="center"> <a href='/commitments/{{metric_id}}/{{next_month}}/{{next_year}}'> Next Month</a> </div></td>
+       </tr>
+       </table>
+    </div>
+</div>
+<div>
+        <style>
+        .sortable {  cursor: pointer;}
+        .st-sort-ascent i,.st-sort-descent i {  padding-left: 4px;}
+        .st-sort-ascent i:before {  content: '\25B2';}
+        .st-sort-descent i:before {  content: '\25BC';}
+        </style>
+       <table st-table="displayedCollection"  st-safe-src="rowCollection" class="table table-striped">
+	    <thead>
+	    <tr>
+     	    <th >Row # </th>
+		    <th st-sort="bugid" >Case # <i st-sort="bugid"></i></th>
+		    <th st-sort="project">Project <i st-sort="project"></i></th>
+		    <th st-sort="title">Title <i st-sort="title"></i></th>
+		    <th st-sort="category">Category <i st-sort="category"></i></th>
+		    <th st-sort="commitResult">Commit Result <i st-sort="commitResult"></i></th>
+		    <th st-sort="commitDt">Commitment Date <i st-sort="commitDt"></i></th>
+		    <th st-sort="releaseDt">Release Date <i st-sort="releaseDt"></i></th>
+	    </tr>
+	    <tr>
+		    <th>
+			    &nbsp;
+		    </th>
+		    <th>
+			    <input st-search="bugid" placeholder="search Case #" class="input-sm form-control" type="search"/>
+		    </th>
+	        <th>
+			    <input st-search="project" placeholder="search project" class="input-sm form-control" type="search"/>
+		    </th>
+		    <th>
+			    <input st-search="title" placeholder="search title" class="input-sm form-control" type="search"/>
+		    </th>
+	        <th>
+			    <input st-search="category" placeholder="search Category" class="input-sm form-control" type="search"/>
+		    </th>
+		    <th>
+			    <input st-search="commitResult" placeholder="search Result" class="input-sm form-control" type="search"/>
+		    </th>
+	        <th>
+			    <input st-search="commitDt" placeholder="search Commitment Date" class="input-sm form-control" type="search"/>
+		    </th>
+	        <th>
+			    <input st-search="releaseDt" placeholder="search Release Date" class="input-sm form-control" type="search"/>
+		    </th>
+
+	    </tr>
+	    </thead>
+	    <tbody>
+        <tr><td colspan="7"><input st-search placeholder="global search" class="input-sm form-control" type="search"/></td></tr>
+	    <tr ng-repeat="row in displayedCollection">
+            <td>{{$index + 1}}</td>    
+		    <td>
+				<a ng-if="row.project.indexOf('(FB)') > 0" href="https://fogbugz.evestment.com/?{{row.bugid}}" target="_blank">{{row.bugid}}</a>
+				<a ng-if="row.project.indexOf('(FB)') == -1" href="https://evestment.atlassian.net/browse/{{row.bugid}}" target="_blank">{{row.bugid}}</a>
+			</td>
+		    <td>{{row.project}}</td>
+		    <td>{{row.title}}</td>
+		    <td>{{row.category}}</td>
+		    <td>{{row.commitResult}}</td>
+		    <td>{{row.commitDt}}</td>
+		    <td>{{row.releaseDt}}</td>
+	    </tr>
+	    </tbody>
+    </table>
+</div>

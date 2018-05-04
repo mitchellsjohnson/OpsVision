@@ -1,0 +1,402 @@
+﻿<div class="table-responsive">
+   <table class="table ">
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px" ng-if="dashboard_id==='10'">{{year}} eVestment Strategic Goals</th>
+            <th style="font-size: 30px" ng-if="dashboard_id==='11'">{{year}} eVestment Operational Goals</th>
+
+            <th style="text-align:center; "ng-if="dashboard_id==='10'" >
+               <a href="/initiative_dashboard_details/11/2015/">View Operational Goals</a>
+            </th>
+            <th style="text-align:center; "ng-if="dashboard_id==='11'" >
+               <a href="/initiative_dashboard_details/10/2015/">View Strategic Goals</a>
+            </th>
+      </thead>
+   </table>
+</div>
+<!-- /.table-responsive -->
+<div class="table-responsive">
+   <table class="table table-bordered" id="metricsTable">
+      <colgroup>
+         <col style="width:2%"  >
+         <col style="width:15%" >
+         <col style="width:5%"  >
+         <col style="width:5%"  >
+         <col style="width:5%"  >
+         <col style="width:5%"  >
+         <col style="width:5%"  >
+         <col style="width:5%"  >
+         <col style="width:5%"  >
+         <col style="width:5%"  >
+         <col style="width:5%"  >
+         <col style="width:5%"  >
+         <col style="width:5%"  >
+         <col style="width:5%"  >
+         <col style="width:23%" >
+      </colgroup>
+      <thead>
+         <tr>
+            <th style="background-color:lightblue; text-align:center; ">#</th>
+            <th style="background-color:lightblue">Metric</th>
+            <th  style="background-color:lightgray; text-align:center">Jan</th>
+            <th style="background-color:lightgray; text-align:center">Feb</th>
+            <th style="background-color:lightgray; text-align:center">Mar</th>
+            <th style="background-color:lightgray; text-align:center">Apr</th>
+            <th style="background-color:lightgray; text-align:center">May</th>
+            <th style="background-color:lightgray; text-align:center">Jun</th>
+            <th style="background-color:lightgray; text-align:center">Jul</th>
+            <th style="background-color:lightgray; text-align:center">Aug</th>
+            <th style="background-color:lightgray; text-align:center">Sep</th>
+            <th style="background-color:lightgray; text-align:center">Oct</th>
+            <th style="background-color:lightgray; text-align:center">Nov</th>
+            <th style="background-color:lightgray; text-align:center">Dec</th>
+            <th style="background-color:lightyellow; text-align:center">Note</th>
+         </tr>
+      </thead>
+      <tbody ng-repeat="metric in metrics">
+         <tr >
+            <td>{{$index + 1}}</td>
+            <td style="text-align:left; " class="metric_desc" >
+               {{ metric.label }}     
+
+               <div class="relative" >
+                  <a href='/initiative_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/{{metric.year}}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-info-sign"></i></div>
+                  </a>
+               </div>          
+                <div class="relative" ng-show="metric.initiativeExternalDashboard">
+                  <a href='{{ metric.initiativeExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-bottom-right-oneleft"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+                <div class="relative" ng-show="isAdmin === 'TRUE'">
+                  <a href='/metric_edit/{{ metric.metric_id}}'>
+                     <div class="relative-icon-bottom-right-twoleft"><i class="icon-edit"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.janBorderTop, 'border-bottom': metric.janBorderBottom,'border-left': metric.janBorderLeft, 'border-right': metric.janBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.janmeasure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.janPlanStart"><span class="smalltxt">{{ metric.janPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.janActualStart"><span class="smalltxt">{{ metric.janActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.janPlanLaunch"><span class="smalltxt">{{ metric.janPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.janTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.janTargetLaunch }}&nbsp;<br /></span></div> 
+                  <div class="divborder" ng-hide="!metric.janActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.janActualLaunch }}&nbsp;<br /></span></div>
+               </a>
+                
+
+               {{ metric.janval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.janDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/1/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.janExternalDashboard" class="relative">
+                  <a href='{{ metric.janExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.febBorderTop, 'border-bottom': metric.febBorderBottom,'border-left': metric.febBorderLeft, 'border-right': metric.febBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.febmeasure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.febPlanStart"><span class="smalltxt">{{ metric.febPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.febActualStart"><span class="smalltxt">{{ metric.febActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.febPlanLaunch"><span class="smalltxt">{{ metric.febPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.febTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.febTargetLaunch }}&nbsp;<br /></span></div>  
+                  <div class="divborder" ng-hide="!metric.febActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.febActualLaunch }}&nbsp;<br /></span></div>
+               </a>
+               
+               {{ metric.febval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.febDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/2/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-rightish"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.febExternalDashboard" class="relative">
+                  <a href='{{ metric.febExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.marBorderTop, 'border-bottom': metric.marBorderBottom,'border-left': metric.marBorderLeft, 'border-right': metric.marBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.marmeasure] ">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.marPlanStart"><span class="smalltxt">{{ metric.marPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.marActualStart"><span class="smalltxt">{{ metric.marActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.marPlanLaunch"><span class="smalltxt">{{ metric.marPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.marTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.marTargetLaunch }}&nbsp;<br /></span></div> 
+                   <div class="divborder" ng-hide="!metric.marActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.marActualLaunch }}&nbsp;<br /></span></div> 
+               </a>
+               
+               
+               {{ metric.marval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.marDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/3/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.marExternalDashboard" class="relative">
+                  <a href='{{ metric.marExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.aprBorderTop, 'border-bottom': metric.aprBorderBottom,'border-left': metric.aprBorderLeft, 'border-right': metric.aprBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.aprmeasure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.aprPlanStart"><span class="smalltxt">{{ metric.aprPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.aprActualStart"><span class="smalltxt">{{ metric.aprActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.aprPlanLaunch"><span class="smalltxt">{{ metric.aprPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.aprTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.aprTargetLaunch }}&nbsp;<br /></span></div>   
+                  <div class="divborder" ng-hide="!metric.aprActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.aprActualLaunch }}&nbsp;<br /></span></div>
+               </a>
+               
+               {{ metric.aprval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.aprDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/4/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.aprExternalDashboard" class="relative">
+                  <a href='{{ metric.aprExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.mayBorderTop, 'border-bottom': metric.mayBorderBottom,'border-left': metric.mayBorderLeft, 'border-right': metric.mayBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.maymeasure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.mayPlanStart"><span class="smalltxt">{{ metric.mayPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.mayActualStart"><span class="smalltxt">{{ metric.mayActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.mayPlanLaunch"><span class="smalltxt">{{ metric.mayPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.mayTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.mayTargetLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.mayActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.mayActualLaunch }}&nbsp;<br /></span></div>
+               </a>
+               
+               {{ metric.mayval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.mayDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/5/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.mayExternalDashboard" class="relative">
+                  <a href='{{ metric.mayExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.junBorderTop, 'border-bottom': metric.junBorderBottom,'border-left': metric.junBorderLeft, 'border-right': metric.junBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.junmeasure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.junPlanStart"><span class="smalltxt">{{ metric.junPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.junActualStart"><span class="smalltxt">{{ metric.junActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.junPlanLaunch"><span class="smalltxt">{{ metric.junPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.junTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.junTargetLaunch }}&nbsp;<br /></span></div>  
+                  <div class="divborder" ng-hide="!metric.junActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.junActualLaunch }}&nbsp;<br /></span></div>
+               </a>
+               
+               {{ metric.junval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.junDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/6/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.julExternalDashboard" class="relative">
+                  <a href='{{ metric.julExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.julBorderTop, 'border-bottom': metric.julBorderBottom,'border-left': metric.julBorderLeft, 'border-right': metric.julBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.julmeasure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.julPlanStart"><span class="smalltxt">{{ metric.julPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.julActualStart"><span class="smalltxt">{{ metric.julActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.julPlanLaunch"><span class="smalltxt">{{ metric.julPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.julTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.julTargetLaunch }}&nbsp;<br /></span></div> 
+                  <div class="divborder" ng-hide="!metric.julActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.julActualLaunch }}&nbsp;<br /></span></div>
+               </a>
+               
+               {{ metric.julval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.julDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/7/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.julExternalDashboard" class="relative">
+                  <a href='{{ metric.julExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.augBorderTop, 'border-bottom': metric.augBorderBottom,'border-left': metric.augBorderLeft, 'border-right': metric.augBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.augmeasure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.augPlanStart"><span class="smalltxt">{{ metric.augPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.augActualStart"><span class="smalltxt">{{ metric.augActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.augPlanLaunch"><span class="smalltxt">{{ metric.augPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.augTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.augTargetLaunch }}&nbsp;<br /></span></div>  
+                  <div class="divborder" ng-hide="!metric.augActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.augActualLaunch }}&nbsp;<br /></span></div>
+               </a>
+               
+               {{ metric.augval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.augDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/8/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.augExternalDashboard" class="relative">
+                  <a href='{{ metric.augExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.sepBorderTop, 'border-bottom': metric.sepBorderBottom,'border-left': metric.sepBorderLeft, 'border-right': metric.sepBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.sepmeasure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.sepPlanStart"><span class="smalltxt">{{ metric.sepPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.sepActualStart"><span class="smalltxt">{{ metric.sepActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.sepPlanLaunch"><span class="smalltxt">{{ metric.sepPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.sepTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.sepTargetLaunch }}&nbsp;<br /></span></div> 
+                  <div class="divborder" ng-hide="!metric.sepActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.sepActualLaunch }}&nbsp;<br /></span></div>
+               </a>
+               
+               {{ metric.sepval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.sepDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/9/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.sepExternalDashboard" class="relative">
+                  <a href='{{ metric.sepExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.octBorderTop, 'border-bottom': metric.octBorderBottom,'border-left': metric.octBorderLeft, 'border-right': metric.octBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.octmeasure]">
+              <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.octPlanStart"><span class="smalltxt">{{ metric.octPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.octActualStart"><span class="smalltxt">{{ metric.octActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.octPlanLaunch"><span class="smalltxt">{{ metric.octPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.octTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.octTargetLaunch }}&nbsp;<br /></span></div> 
+                  <div class="divborder" ng-hide="!metric.octActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.octActualLaunch }}&nbsp;<br /></span></div>
+               </a>
+
+               {{ metric.octval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.octDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/10/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.octExternalDashboard" class="relative">
+                  <a href='{{ metric.octExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.novBorderTop, 'border-bottom': metric.novBorderBottom,'border-left': metric.novBorderLeft, 'border-right': metric.novBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.novmeasure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.novPlanStart"><span class="smalltxt">{{ metric.novPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.novActualStart"><span class="smalltxt">{{ metric.novActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.novPlanLaunch"><span class="smalltxt">{{ metric.novPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.novTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.novTargetLaunch }}&nbsp;<br /></span> </div>  
+                  <div class="divborder" ng-hide="!metric.novActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.novActualLaunch }}&nbsp;<br /></span></div>
+               </a>
+              
+               {{ metric.novval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.novDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/11/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.novExternalDashboard" class="relative">
+                  <a href='{{ metric.novExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td ng-style="{'border-top': metric.decBorderTop, 'border-bottom': metric.decBorderBottom,'border-left': metric.decBorderLeft, 'border-right': metric.decBorderRight }" ng-class="{GREEN:'greenMetric', YELLOW: 'yellowMetric', RED:  'redMetric', GRAY: 'grayMetric'}[metric.decmeasure]">
+               <a href="#" 
+                  data-toggle="modal"
+                  data-target="#basicModal">
+                  <div class="divborder" ng-hide="!metric.decPlanStart"><span class="smalltxt">{{ metric.decPlanStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.decActualStart"><span class="smalltxt">{{ metric.decActualStart }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.decPlanLaunch"><span class="smalltxt">{{ metric.decPlanLaunch }}&nbsp;<br /></span></div>
+                  <div class="divborder" ng-hide="!metric.decTargetLaunch"><span class="boldsmalltxtwhitebg">{{ metric.decTargetLaunch }}&nbsp;<br /></span></div>  
+                  <div class="divborder" ng-hide="!metric.decActualLaunch"><span class="boldsmalltxtyellowbg">{{ metric.decActualLaunch }}&nbsp;<br /></span></div>
+               </a>
+               
+               {{ metric.decval | decorateNumberVal: metric.displaytype }}&nbsp;
+               <div ng-hide="!metric.decDiscussionPointId" class="relative">
+                  <a href='/discussion_point_details/{{ metric.metric_id}}/{{ metric.dashboard_id }}/12/{{ metric.year }}'>
+                     <div class="relative-icon-bottom-right"><i class="icon-comment-alt"></i></div>
+                  </a>
+               </div>
+               <div ng-hide="!metric.decExternalDashboard" class="relative">
+                  <a href='{{ metric.decExternalDashboard }}' target="_blank">
+                     <div class="relative-icon-top-right"><i class="icon-tasks"></i></div>
+                  </a>
+               </div>
+            </td>
+            <td style="text-align:left;"> {{metric.short_note}}</td>
+         </tr>
+   </table>
+</div>
+<div class="table-responsive">
+   <table>
+      <tr>
+         <td style="font-weight:bold">eVestment Proprietary and Confidential </td>
+      </tr>
+      <tr>
+         <td><sup>1</sup>&nbsp;<b>Strategic Priorities:</b>  Priorities and planning schedules were established at the start of 2015.  Initiative details available by clicking Info Icon <i class="icon-info-sign"></i>. </td>
+      </tr>
+      <tr>
+         <td><sup>2</sup>&nbsp;<b>Methodology:</b>  <span style="background-color:lightgreen;">Green Initiatives</span> are on schedule.  <span style="background-color:yellow;">Yellow initiatives</span> are at risk but progress is being made.  <span style="background-color:red;">Red initiatives</span> will not be delivered by Target Launch.</td>
+      </tr>
+      <tr>
+         <td><sup>3</sup>&nbsp;<b>Discussion Items:</b>  Commentary and Schedule Analysis available by clicking Comment Icon <i class="icon-comment-alt"></i>.</td>
+      </tr>
+      <tr>
+         <td><sup>3</sup>&nbsp;<b>Schedule Date Definitions:</b>  Definition of Plan Start, Actual Start, Plan Launch, Actual Launch, and Target Launch. Definitions available <a href="#" data-toggle="modal" data-target="#basicModal">HERE </a> or by clicking on any Schedule Date in monthly cell. </td>
+      </tr>
+   </table>
+</div>
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h4 class="modal-title" id="myModalLabel">Milestone Definition</h4>
+         </div>
+         <div class="modal-body">
+            <ul>
+               <li><b>Plan Start:</b>  Initiative Start date set by Priority Committee during 2015 strategic planning.  </li>
+               <li><b>Plan Launch:</b>  Estimated Launch date (relative to Planned Start) set by Engineering team during 2015 strategic planning.  Estimates are created from high-level requirements and do not represent firm delivery commitments.  Target Launch dates are refined continuously as detailed requirements are finalized.</li>
+               <li><b>Actual Start:</b>  Actual Start date of initiative.</li>
+               <li><b>Actual Launch:</b>  Actual Launch date of initiative.</li>
+               <li><span style="background-color:yellow"><b><i>Target Launch:</i> </b> Represents current estimate of expected launch date for initiative that is in active development.  This is the most accurate planning date because it is created from the latest requirements and priority.  Projects that have not begun do not have a target launch.</span></li>
+            </ul>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>

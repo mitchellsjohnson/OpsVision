@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<div class="table-responsive">
+   <table class="table ">
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px">Technology Service Fulfillment Metrics</th>
+            <th class="inputsubheader">  <a href="/metric_edit/{{metric_id}} ">Edit Metric</a></th>
+            <th class="inputsubheader">  <a href="/metric_measurements/{{metric_id}}/2015">Add Metric Measurements</a> </th>
+            <th class="inputsubheaderselected">  <a href="/metric_meta_data/{{metric_measurements.metric_id}}">Edit Initiative Meta Data</a> </th>
+            <th class="inputsubheader">  <a href="/metrics/ ">Metrics Admin</a></th>
+            <th class="inputsubheader">  <a href="/metric_meta_data/{{previous_metric_id}}">Previous</a></th>
+            <th class="inputsubheader">  <a href="/metric_meta_data/{{next_metric_id}} ">Next</a> </th>
+            <th class="inputsubheader">  <a href="#" ng-click="$back()">Back </a></th>
+      </thead>
+   </table>
+</div>
+<form id="metricMetaDataForm" method="post">
+<input type="hidden" class="form-control" name="initiative_meta_data_id"   ng-model="metric.initiative_meta_data_id" />  
+<div class="pull-right"><span ng-if="success" style="color:green; font-weight:bold">{{success}}</span><span ng-if="error" style="color:red; font-weight:bold">{{error}}</span>&nbsp;<button type="submit" class="btn btn-default" ng-click="submit(metric)">Submit</button></div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Metric ID</label>
+                <input type="text" class="form-control" name="metric_id" readonly="readonly" ng-model="metric.metric_id" required />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Metric Code</label>
+                <input type="text" class="form-control" name="metric_cd"  readonly="readonly" ng-model="metric.metric_cd" required />
+            </div>
+
+            <div class="col-xs-4">
+                <label class="control-label">Label</label>
+                <input type="text" class="form-control" name="label"   readonly="readonly" ng-model="metric.label" required/>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+         <div>
+            <label class="control-label">Metric Metadata</label>
+        </div>
+        <div class="row">
+
+            <input type="hidden" class="form-control" name="initiative_meta_data_id"   ng-model="metric.initiative_meta_data_id" />
+      
+
+            <div class="col-xs-2">
+                <label class="control-label">Plan Start<span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="plan_start"   ng-model="metric.plan_start" required />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Plan Finish<span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="plan_finish"   ng-model="metric.plan_finish" required/>
+            </div>
+            <div class="col-xs-2">
+                <label class="control-label">Target Finish</label>
+                <input type="date" class="form-control" name="target_finish"   ng-model="metric.target_finish" />
+            </div>
+            <div class="col-xs-2">
+                <label class="control-label">Actual Start</label>
+                    <input type="date" class="form-control" name="actual_start"   ng-model="metric.actual_start" />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Actual Finish</label>
+                <input type="date" class="form-control" name="actual_finish"   ng-model="metric.actual_finish" />
+            </div>
+            <div class="col-xs-2">
+                <label class="control-label">Strategic Priority<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="strategic_priority"   ng-model="metric.strategic_priority"  required />
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+            <div class="form-group">
+                <label class="control-label">Short Note&nbsp;</label>
+                <textarea class="form-control" name="short_note" rows="5"  maxlength="1000" ng-model="metric.short_note" ></textarea>
+            </div>
+
+           <div class="form-group">
+                <label class="control-label">Long Note&nbsp;</label>
+                <textarea class="form-control" name="long_note" rows="10"  maxlength="8000" ng-model="metric.long_note" ></textarea>
+            </div>
+           <div class="form-group">
+                <label class="control-label">Value Proposition&nbsp;</label>
+                <textarea class="form-control" name="value_proposition" rows="10"  maxlength="8000" ng-model="metric.value_proposition" ></textarea>
+            </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Technology Lead</label>
+                <input type="text" class="form-control" name="technology_lead" maxlength="100" ng-model="metric.technology_lead" />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Product Lead</label>
+                <input type="text" class="form-control" name="product_lead" maxlength="100" ng-model="metric.product_lead" />
+            </div>
+
+        </div>
+
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Updated On</label>
+                <input type="date" class="form-control" name="metric_id" readonly="readonly" ng-model="metric.updated" />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Updated<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="metric_cd"  maxlength="100" ng-model="metric.updated_by" required />
+            </div>
+
+        </div>
+
+    </div>
+    
+  <div class="pull-right"><span ng-if="success" style="color:green; font-weight:bold">{{success}}</span><span ng-if="error" style="color:red; font-weight:bold">{{error}}</span>&nbsp;<button type="submit" class="btn btn-default" ng-click="submit(metric)">Submit</button></div>
+ 
+</form>
+
+
+

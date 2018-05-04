@@ -1,0 +1,16 @@
+﻿<%- include /../layouts/header.html %>
+
+        <div class="page-data">
+        <h2>Channels being broadcast </h2>
+        <ul>
+            <% for(var i = 0; i < channels.length; i++) { %>
+            <li>
+                <a href="/broadcasts/<%= channels[i].code %>"><%= channels[i].code %></a>
+            </li>
+            <% } %>
+        </ul>
+            
+        </div>
+        
+<%- include /../layouts/footer.html %>
+

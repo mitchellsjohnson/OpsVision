@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html lang="en" ng-app="opsVisionApp">
+<head><meta charset="utf8"><base href="/">
+		<title>OpsVision</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="bower_components/jquery/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/services.js"></script>
+</head>
+		<body>
+			<div role="navigation" class="navbar navbar-default navbar-fixed-top">
+				<div class="navbar-header">
+					<button type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse" class="navbar-toggle">
+						<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
+						<span class="icon-bar"></span><span class="icon-bar"></span>
+                   
+					</button><a href="home" ><img src="/images/cc_logo.png"></a></div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse">
+							<ul class="nav navbar-nav"><li><a href="view1">View1</a></li>
+								<li> <a href="view2">View2 </a></li>
+							</ul>
+						</div>
+						</div>
+             <div class="jumbotron"> 
+				<div class="container">     
+                                <div ng-view></div>
+                  </div>
+                 <hr>
+						<div>Version: v	<span app-version></span></div>
+
+					</div>
+
+		</body>
+</html>

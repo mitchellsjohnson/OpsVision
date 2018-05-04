@@ -1,0 +1,9 @@
+*.dat
+*.suo
+config/production.json
+config/development.json
+node_modules/
+bower_components/
+.npm
+.vs/
+.vscode/*

@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<div class="table-responsive">
+   <table class="table ">
+      <thead>
+         <tr></tr>
+         <tr>
+            <th><img src="\images\eVmetrics.gif" alt=""  /></th>
+            <th style="font-size: 30px">Split Screen Input</th>
+            <th class="inputsubheader">  <a href="#" ng-click="viewModel.$back()">Back </a></th>
+      </thead>
+   </table>
+</div>
+<form id="splitScreenForm" method="post">
+
+<div class="pull-right"><span ng-if="viewModel.success" style="color:green; font-weight:bold">{{viewModel.success}}</span><span ng-if="viewModel.error" style="color:red; font-weight:bold">{{viewModel.error}}</span>&nbsp;<button type="submit" class="btn btn-default" ng-click="submit(viewModel.splitscreen)">Submit</button></div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Split Screen ID</label>
+                <input type="text" class="form-control" name="channel_splitscreen_id" readonly="readonly" ng-model="viewModel.splitscreen.channel_splitscreen_id" required />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Split Screen Code&nbsp;<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="channel_splitscreen_cd"  maxlength="100" ng-model="viewModel.splitscreen.channel_splitscreen_cd" required />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+            <div class="form-group">
+                <label class="control-label">Description&nbsp;<span style="color:red">*</span></label>
+                <textarea class="form-control" name="description" rows="5"  maxlength="200" ng-model="viewModel.splitscreen.description" required></textarea>
+            </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-3">
+                <label class="control-label">Left Channel&nbsp;<span style="color:red">*</span></label>
+                <select name="channel_id_left" ng-model="viewModel.splitscreen.channel_id_left" ng-options="item.channel_id as item.name for item in viewModel.channel_dds">
+                    <option value="">Select Channel</option>
+                </select>
+            </div>
+            <div class="col-xs-3">
+                <label class="control-label">Right Channel&nbsp;<span style="color:red">*</span></label>
+                <select name="channel_id_right" ng-model="viewModel.splitscreen.channel_id_right" ng-options="item.channel_id as item.name for item in viewModel.channel_dds">
+                    <option value="">Select Channel</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">Updated On</label>
+                <input type="date" class="form-control" name="updated" readonly="readonly" ng-model="viewModel.splitscreen.updated" />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Updated By&nbsp;<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="updated_by"  maxlength="100" ng-model="viewModel.splitscreen.updated_by" required/>
+            </div>
+
+        </div>
+    
+    </div>
+    
+    <div class="pull-right"><span ng-if="viewModel.success" style="color:green; font-weight:bold">{{viewModel.success}}</span><span ng-if="viewModel.error" style="color:red; font-weight:bold">{{viewModel.error}}</span>&nbsp;<button type="submit" class="btn btn-default" ng-click="submit(viewModel.splitscreen)">Submit</button></div>
+</form>
+
+
+

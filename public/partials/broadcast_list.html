@@ -1,0 +1,22 @@
+<table width="90%">
+    <tr>
+        <td>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Watch a Channel Broadcast</h3>
+                </div>
+               
+
+                <div class="panel-body" ng-repeat="channel in viewModel.channels">
+                  <a href="/broadcasts/{{ channel.channel_cd }}"  target="_blank">{{ channel.description }}</a>
+            
+                </div>
+              </div>
+            </div><!-- /.col-sm-4 -->
+        </div>
+      </td>
+        <td style="text-align:right; vertical-align: top;"><a href="#" ng-click="viewModel.$back()">Back </a></td>
+    </tr>
+</table>
