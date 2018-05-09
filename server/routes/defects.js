@@ -45,7 +45,7 @@ exports.view = function(req, res){
 
 
         var sql = sqlfront + sqlmiddle + sqlback;
-        console.log("SQL : %s ", sql);
+       
         connection.query(sql, [metricid,metricid,metricid,metricid], function(err,rows)
         {
          

@@ -31,7 +31,7 @@ Install MySQL 5.5+
 
 Install application via `npm`:
 ```
-npm install OpsVision 
+npm install
 ```
 This will install `OpsVision` from application's `package.json` file.
 
@@ -46,11 +46,10 @@ navigate to localhost:777
     
     app.js              --> Node server app config
     package.json        --> for npm for Node
-	bower.json			--> for Node
 	mysqllib.js			--> MySQL Driver 
 	OpsVision.sln		--> VisualStudio Solution
     public/             --> All of the files to be used in the Angular App;  Main UI of application
-		bower_components/       --> Angular, Bootstrap, and 3rd party JavaScript libraries
+		node_components/       --> Angular, Bootstrap, and 3rd party JavaScript libraries
 		css/
 		images/
 		js/						--> Angular App Root
@@ -62,8 +61,7 @@ navigate to localhost:777
     
 
 ## Roadmap
-1.  Splitscreen Channel Broadcast (Completed 5/2/2016)
-2.  Native metric calculation
-3.  OpsVision API for automating import of raw metric and project data into OpsVision
-4.  Add user authentication and roles
+1.  Upgrade UI Grid - move to NPM
+2.  Upgrade component libraries (Angular, etc.)
+3.  Add user authentication and roles
 

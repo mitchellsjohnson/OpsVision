@@ -15,8 +15,7 @@ var opsVisionApp = angular.module('opsVisionApp', [
   'ui.grid.autoResize',
   'ui.grid.cellNav',
   'ngCookies',
-  'smart-table',
-  'tc.chartjs']);
+  'smart-table']);
 
 
 opsVisionApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -39,8 +38,7 @@ opsVisionApp.config(['$routeProvider', '$locationProvider', function($routeProvi
     $routeProvider.when('/metric_meta_data/:metric_id', {templateUrl: '/partials/dashboards/metric_meta_data_input.html', controller: 'MetricMetaDataCtrl'});   
     $routeProvider.when('/discussion_point_input/:discussion_point_id?', {templateUrl: '/partials/dashboards/discussion_point_input.html', controller: 'DiscussionPointInputCtrl'});  
     $routeProvider.when('/metric_add/', {templateUrl: '/partials/dashboards/metric_input.html', controller: 'MetricEditCtrl'});    
-    $routeProvider.when('/chart_line_defect/:metric_id/:tv_view?', {templateUrl: '/partials/dashboards/chartLineDefect.html', controller: 'ChartLineDefectCtrl'});    
-    $routeProvider.when('/chart_stackbar_defect/:metric_id/:tv_view?', { templateUrl: '/partials/dashboards/chartStackBarDefect.html', controller: 'ChartStackBarDefectCtrl' });         
+    $routeProvider.when('/chart_line_defect/:metric_id/:tv_view?', {templateUrl: '/partials/dashboards/chartLineDefect.html', controller: 'ChartLineDefectCtrl'});           
     $routeProvider.when('/product_scorecards/', { templateUrl: '/partials/dashboards/product_scorecards.html', controller: 'BlankCtrl' });       
     $routeProvider.when('/dashboards', {templateUrl: '/partials/dashboards/dashboards.html', controller: 'DashboardsCtrl'});    
     $routeProvider.when('/dashboard_config/:dashboardid', {templateUrl: '/partials/dashboards/dashboard_config.html', controller: 'DashboardConfigCtrl'}); 
