@@ -60,9 +60,9 @@ app.controller('MetricDetailsCtrl',  ['$scope', 'BackendServiceMetricDetails', '
                       $scope.threshold_red                 = 'Target Launched Schedule will be Missed'
 
                   }else{
-                      $scope.threshold_green               = metric.data[0].threshold_green;             
-                      $scope.threshold_yellow              = metric.data[0].threshold_yellow;            
-                      $scope.threshold_red                 = metric.data[0].threshold_red;
+                      $scope.threshold_green               = metric.data[0].threshold_green / 10;           
+                      $scope.threshold_yellow              = metric.data[0].threshold_yellow/10;            
+                      $scope.threshold_red                 = metric.data[0].threshold_red/10;
                     };
                 };
       });

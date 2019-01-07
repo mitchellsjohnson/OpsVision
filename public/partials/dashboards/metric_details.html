@@ -57,7 +57,7 @@
              
              <td ng-if="type==='SUCCESS_RATE'"><div class="small_border_ctr greenMetricLrg">Percentage <br /> >= <br />{{threshold_green | decorateNumberVal: display_type }}</div></td>
              <td ng-if="type==='SUCCESS_RATE'"><div class="small_border_ctr yellowMetricLrg">{{threshold_green | decorateNumberVal: display_type }}<br />> <br />Percentage <br />>=<br />{{threshold_yellow | decorateNumberVal: display_type }}</div></td>
-             <td ng-if="type==='SUCCESS_RATE'"><div class="small_border_ctr redMetricLrg">Percentage <br /> < <br />{{threshold_yellow | decorateNumberVal: display_type }}</div></td>
+             <td ng-if="type==='SUCCESS_RATE'"><div class="small_border_ctr redMetricLrg">Percentage <br /> < <br />{{threshold_yellow | decorateNumberVal: display_type: type }}</div></td>
 
                           
                

@@ -71,26 +71,11 @@ app.controller('MetricEditCtrl',  ['$scope', 'BackendServiceMetricEdit', '$q', '
            console.log(metric.display_type);
            console.log(metric.calculation_interval);
            console.log(metric.updated_by);
-           if (!metric.threshold_green )
-          {
-                console.log('this should not work, mistake');
-            }
-           if (metric.threshold_green)
-          {
-                console.log('crazy');
-            }
-
-           if (!metric.label )
-          {
-                console.log('this should not work, mistake on label');
-            }
-           if (metric.label )
-          {
-                console.log('crazy again for label');
-            }
-           if (!metric.label || !metric.metric_cd || !metric.definition || !metric.threshold_green || !metric.threshold_yellow || !metric.threshold_red || !metric.metric_start_date || !metric.type || !metric.display_type || !metric.calculation_interval|| !metric.type || !metric.display_type || !metric.calculation_interval || !metric.updated_by){
+          
+           if (!metric.label || !metric.metric_cd || !metric.definition || !metric.threshold_green || !metric.threshold_yellow || !metric.threshold_red || !metric.metric_start_date || !metric.type || !metric.display_type || !metric.calculation_interval || !metric.updated_by){
                 $scope.success = null;
-                $scope.error = 'ERROR:  Complete all REQUIRED Fields';   
+                    $scope.error = 'ERROR:  Complete all REQUIRED Fields';
+
             } else {
                BackendServiceMetricEdit.createMetric(metric);
                var date = new Date();
